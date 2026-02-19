@@ -1,0 +1,92 @@
+@font-face{
+    font-family: 'Poppins', sans-serif;
+      src: url("fonts/Poppins-ExtraLight.ttf");
+    src: url("fonts/Poppins-Light.ttf");
+    src: url("fonts/Poppins-SemiBold.ttf");
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Poppins', sans-serif;
+}
+/**********************************************************************/
+
+/* VENTANAS MODALES */
+.modal_confirmado{
+    width: 30%;
+    box-shadow: 0 0 32px -16px rgba(0,0,0,0.5);
+    height: 80px;
+    border-radius: 10px;
+    position: fixed;
+    bottom: 50px;
+    left: 35%;
+    right:35%;
+    background: #fff;
+    display: none;    
+}
+
+ .modal_text{
+    line-height: 80px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.2em;
+    position: relative;
+}
+
+.modal_text::before{
+    content: url("../img/checkmark1.png");
+    position: relative;
+    top:7px;
+    right: 5px;
+    
+}
+.err{
+    color:crimson;
+}
+.err::before{
+    content: url("../img/error1.png");
+    position: relative;
+    top:5px;
+    right: 5px;
+}
+
+.adv{
+    color: #ffa400;
+}
+.adv::before{
+    content: url("../img/advertencia1.png");
+    position: relative;
+    top:5px;
+    right: 5px;
+}
+
+
+
+/**************************************/
+
+@media screen and (max-width:810px){
+
+    
+}
+
+
+
+@media screen and (max-width:450px){
+    
+    /* VENTANAS MODALES */
+    .modal_confirmado{
+        width: 90%;
+        height: 70px;
+        left: 4%;
+        right:4%;
+        background: #fff;
+    }
+    .modal_text{
+        line-height: 70px;
+    }
+
+}

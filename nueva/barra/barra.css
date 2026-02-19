@@ -1,0 +1,299 @@
+
+@font-face{
+    font-family: 'Poppins', sans-serif;
+    src: url("fonts/Poppins-ExtraLight.ttf");
+    src: url("fonts/Poppins-Light.ttf");
+    src: url("fonts/Poppins-SemiBold.ttf");
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    scroll-behavior: smooth;
+    
+  }
+
+body{
+    font-family: 'Poppins', sans-serif;
+}
+a{
+    color:#eb8d36;
+}
+a:hover{
+    text-decoration: none !important;
+    color:#eb8d36;
+}
+li{
+    list-style: none;
+}
+.btn:hover {
+    color: #fff !important;
+   
+    }
+.btnColor{
+    background: #eb8d36;
+    color:white;
+}
+
+
+
+/*************************************** */
+/* NAVBARRA */
+.navbar{
+    background: #c0431c;
+
+}
+.navbar .nav-item i{
+    position: relative;
+    top:2px;
+    right:2px;
+}
+.navbar .title{
+    text-align: center;
+    
+}
+.navbar .cuadro_img{
+    width: 80px;
+}
+
+.navbar h4{
+    color:white;
+    font-size: 2em;
+    font-weight: 600;
+}
+.navbar .navbar-nav a{
+    cursor: pointer;
+}
+.navbar .navbar-nav i{
+    margin-left: 5px;
+} 
+
+/***************************************************/
+/*FECHA Y HORA*/
+#datosFecha{
+    width: 100%;
+    height: 35px;
+    text-align: center;
+    border-bottom: 2px solid #c0431c;
+}
+#datosFecha p{
+    display: inline-block;
+    line-height: 30px;
+    margin: 0 40px;
+    color:#c0431c;
+    font-size: 1.2em;
+}
+#datosFecha .dfec i{
+    position: relative;
+    top:3px;
+    right: 2px;
+}
+
+/****************************************************/
+/*CONTAR ORDENES*/
+.contar_ordenes{
+    width: 90%;
+    height:100%;
+    margin: 10px auto;
+
+}
+
+
+/***************************************************/
+/*MOSTRAR ORDENES*/
+.mostrar_ordenes{
+    width: 90%;
+    height: 100%;
+    margin: 30px auto;
+    margin-bottom: 100px;
+    text-align: center;
+}
+.mostrar_ordenes table{
+    margin: 5px auto;
+}
+.mostrar_ordenes table th{
+    border: 2px solid #000 !important;
+}
+.mostrar_ordenes table tbody{
+    border-bottom: 2px solid gray !important;
+}
+.mostrar_ordenes table tbody td{
+    padding: 10px 0;
+    border: 0px;
+}
+.mostrar_ordenes table .linkEntregado{
+    position: relative;
+    width: 50px;
+}
+.mostrar_ordenes table .linkEntregado a{
+   color:#eb8d36;
+   position: absolute;
+   font-size: 2em;
+   display: block;
+   top:-3px;
+   left:10px;
+   box-shadow: 0 0 32px -16px rgba(0,0,0,0.5);
+}
+.llevarMarca{
+    color: #c0431c;
+}
+
+.mostrar_ordenes .nohay{
+    font-size: 1.1em;
+    color:crimson;
+    margin: 100px auto;
+    text-align: center;
+}
+.mostrar_ordenes table .observaciones td{
+    border-bottom: 0px;
+    font-weight: 700;
+    padding: 5px 0;
+}
+.cantPro{
+    font-weight: bold;
+    font-size: 25px;
+    color:#c0431c;
+}
+
+
+/*PINTAR COLOR DE MESAS*/
+.mostrar_ordenes  table .M1{
+    background-color: rgb(175, 237, 175);
+}
+.mostrar_ordenes  table .M2{
+    background-color: rgb(123, 220, 225);
+}
+.mostrar_ordenes  table .M3{
+    background-color: rgb(203, 225, 123);
+}
+.mostrar_ordenes  table .M4{
+    background-color: rgb(169, 187, 212);
+}
+.mostrar_ordenes  table .M5{
+    background-color: rgb(237, 162, 246);
+}
+.mostrar_ordenes  table .M6{
+    background-color: rgb(160, 246, 114);
+}
+.mostrar_ordenes  table .M7{
+    background-color: rgb(160, 160, 160);
+}
+.mostrar_ordenes  table .M8{
+    background-color: rgb(254, 97, 97);
+}
+.mostrar_ordenes  table .M9{
+    background-color: rgb(188, 180, 107);
+}
+.mostrar_ordenes  table .M10{
+    background-color: rgb(254, 97, 141);
+}
+.mostrar_ordenes  table .M11{
+    background-color: rgb(109, 246, 202);
+}
+.mostrar_ordenes  table .M12{
+    background-color: rgb(80, 88, 194);
+}
+.mostrar_ordenes  table .M13{
+    background-color: rgb(61, 136, 145);
+}
+.mostrar_ordenes  table .M14{
+    background-color: rgb(205, 195, 212);
+}
+.mostrar_ordenes  table .M15{
+    background-color: rgb(157, 57, 134);
+}
+.mostrar_ordenes  table .M16{
+    background-color: rgb(242, 255, 100);
+}
+.mostrar_ordenes  table .M17{
+    background-color: rgb(103, 90, 89);
+}
+
+  /*FOR MEDIUM DEVICE*/
+  @media screen and (max-width:768px){
+
+    /****NAVBAR*********************/
+      
+    .navbar h4{
+       font-size: 1.4em;   
+       
+   }
+
+
+
+ }
+
+  /* FOR SMALL DEVICE */
+@media screen and (max-width: 576px){
+
+
+    
+            /***************************************************/
+            /*FECHA Y HORA*/
+            #datosFecha{
+
+                height: auto;
+              
+            }
+            #datosFecha p{
+                line-height: 20px;
+                margin: 0 20px;
+         
+            }
+    
+        /*MOSTRAR ORDENES*/  
+        .mostrar_ordenes table{
+            width: 100%;
+            
+        }
+        .mostrar_ordenes table tr{
+            display: flex;
+            flex-direction: column;
+            align-items:stretch;
+            
+            /* margin-bottom: 10px; */
+            
+        }
+        .mostrar_ordenes table tbody{
+            border:0;
+            padding: 5px 0;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 10px;
+            box-shadow: 0 0 32px -16px rgba(0,0,0,0.2);
+            
+        }
+        .mostrar_ordenes table tbody td{
+            padding: 2px 0;
+           
+        }
+        .mostrar_ordenes table .linkEntregado{
+            
+            width: 100%;
+       
+        }
+        .mostrar_ordenes table .linkEntregado a{
+            color:#eb8d36;
+            position: static;
+            font-size: 2em;
+            display: block;
+          text-align: center;
+            
+         }
+        .mostrar_ordenes table td[data-titulo]{
+            display: flex;
+            border: 0px;
+        }
+        .mostrar_ordenes table td[data-titulo]::before{
+            content: attr(data-titulo);
+            width: 200px;
+            font-weight: 700;
+        }
+        .mostrar_ordenes table thead{
+            display: none;
+        }
+
+}

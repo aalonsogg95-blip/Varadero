@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' >
+    <!--<meta name="viewport" content="width=device-width,initial-scale=1.0">
+    -->
+    <title>Caja</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="caja.css">
+    <link rel="stylesheet" href="../header.css">
+    <link rel="stylesheet" href="../ventanas.css">
+  
+    <!-- ICONO -->
+    <link rel="shortcut icon" type='image/x-icon' href='../img/ordenar.png'> 
+</head>
+<body>
+   
+   <!-- CABECERA-->
+  <header class='header'>
+   
+    <!-- TITULO -->
+    <div class="header_title">
+        <h1 class='header_tit'>Caja</h1>
+    </div>
+    
+    <!-- BOTON SALIR -->
+   
+    <div class="header_salir">
+        <a href="#/" class='header_cta' onclick='cerrarSesion("caj")'></a>
+    </div>
+   
+  </header>
+  
+  <!-- MOSTRAR FECHA Y HORA-->
+  <nav id='datosFecha'>
+      <p id='fecha' class='dfec'></p>
+      <p id='hora' class='dfec'></p>
+  </nav>
+
+  <div id="versionSistema">
+    <p>Versión 2.0</p>
+  </div>
+
+
+  <!-- CONTAR ORDNES-->
+    <div class='contar_ordenes'>
+        <h1>Cuentas registradas: <spam id='ordent'> </spam></h1>
+    </div>
+
+    <!-- BUSCAR CUENTAS POR FECHA -->
+    <div class="form_buscar">
+        <p>Buscar cuentas por fecha</p>
+        <input type="date" id="fieldFecha" onchange="cargarCuentas()">
+        <!-- <button onclick="cargarCuentas()">Buscar</button> -->
+    </div>
+  
+    
+  <!-- MOSTRAR ORDENES ENTREGADAS-->
+  <section class='mostrar_ordenes'>
+
+
+  </section>
+
+  <!-- /////////////////////////// -->
+    <!-- VENTANA MODAL GENERAL -->
+    <div class="modal_confirmado" id='modal'>
+        <p class='modal_text'></p>
+    </div>
+
+
+        <!-- VENTANA MODAL DINERO EN CAJA -->
+        <div class="divFondo">
+            <div class="divContenedor">
+                <table>
+                    <tr>
+                        <th><h1>Dinero en caja</h1></th>
+                    </tr>
+                    <tr>
+                        <td><input type="number" value=0 id="dineroCaja"> </td>
+                    </tr>
+                    <tr>
+                        <td class="divError">¡Por favor ingresa un numero valido!</td>
+                    </tr>
+                    <tr>
+                        <td><button class="cta" onclick="dineroCajaGuardar()">Aceptar</button></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+
+        <!-- VENTANA MODAL AGREGAR INGREDIENTE EXTRA -->
+        <div class="divFondoAgregarProducto">
+            <div class="divContenedorProducto">
+                <nav>
+                    <h1>Agregar producto común</h1>
+                </nav>
+                <a href="#/" onclick="cerrarProductoFormulario()">X</a>
+                <form id="formProducto">
+                <table>
+
+                    <tr>
+                        <td><label for="">Cantidad:</label></td><td><input type="number" id="fieldCantidadComun" onchange="totalProducto()"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="">Producto:</label></td><td><input type="text" id="fieldProductoComun"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="">Costo:</label></td><td><input type="number" id="fieldCostoComun" onchange="totalProducto()"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="">Total:</label></td><td><input type="number" id="fieldTotalComun"></td>
+                    </tr>
+                    <!-- <tr>
+                        <th colspan="2"><button>Agregar</button></th>
+                    </tr> -->
+                </table>
+                </form>
+            </div>
+        </div>
+
+
+        <!-- VENTANA MODAL ELIMINAR -->
+        <div class="divFondoEliminar">
+            <div class="divContenedorEliminar">
+            
+            </div>
+        </div>
+
+        <!-- VENTANA DE CAMBIO SUGERIDO -->
+        <div class="divFondoCambioSugerido">
+            <div class="divContenedorCambio">
+                <nav>
+                    <h1>Cambio sugerido</h1>
+                </nav>
+                <h3></h3>
+                
+                <table>
+                    <tr>
+                        <td id='tdTotal'><label for="">Total: <span id="spanTotal"><span></label></td>
+                    </tr>
+                    <tr>
+                        <td><label for="">Billete: </label><input type="number" id="fieldBillete" onkeyup='campoCambio()'></td>
+                    </tr>
+                    <tr>
+                        <td><label>Cambio: <span id="spanCambio"></span><label></td>
+                    </tr>
+                    
+                     <tr>
+                       
+                    </tr>
+                </table>
+            
+            </div>
+        </div>
+
+
+        <div id="resultado">
+
+        </div>
+
+
+  <!-- PIE DE PAGINA HISTORIAL -->
+  <footer>
+    <p><a href="historial/historial.html" id="historial">Historial</a></p>
+    <p><a href="eliminados/eliminados.html" id="eliminados">Eliminados</a></p>
+  </footer>
+
+
+
+    <!-- INCLUIR JQUERY -->
+    <script src="../jquery/jquery-3.5.1.min.js"></script>
+    
+    <script src='../jquery/ventanas.js'></script>
+   <!-- SESION DE USUARIO -->
+  <script src='../jquery/usuario.js'></script>
+
+</body>
+</html>
+
+
+<script type="text/javascript">
+        
+
+    //EJECUTAR AL CARGAR EL DOCUMENTO
+    $(document).ready(function(){
+
+        datFecha();
+        setInterval(function(){
+               datFecha();
+               
+				},5000
+				);
+              
+
+                 /////ARCHIVO USUARIO.JS
+                validarUsuario();
+
+                cargar_envio();
+                cargarCuentas();
+                focusVentana();
+                
+        dineroCajaValidarFecha();
+        
+    });
+
+    const fecha = new Date();
+    let fechaFor=fecha.toLocaleDateString();
+    //MOSTRAR FECHA EN CAMPO
+    let output = fecha.getFullYear() +"-"+ String(fecha.getMonth() + 1).padStart(2, '0')  + '-' + String(fecha.getDate()).padStart(2, '0');
+    document.querySelector("#fieldFecha").value=output;
+
+    // let cuentas=[];
+    let usuario=sessionStorage.getItem("usserCaj");
+    let contenedor_ordenes=document.querySelector('.mostrar_ordenes');
+
+
+      /////////////////////////////////////////////////////////////////////
+    //ACTUALIZAR PAGINA AUTOMATICA CUANDO SE SUSPENDE EL DISPOSITIVO O SE CAMBIA DE PESTAÑA*****************
+    function focusVentana(){
+        $(window).focus(function() {
+                ///MOSTRAR ORDENES REALIZADAS
+                 cargarCuentas();
+                // validarUsuario();
+            });
+    }
+
+
+    ///////////////////////////////////////////////////////
+    //DINERO EN CAJA, VALIDAR FECHA ACTUAL
+    function dineroCajaValidarFecha(){
+        const dineroLocal=JSON.parse(localStorage.getItem("DineroCaja")) || '';
+
+        if(dineroLocal!=''){
+            if(dineroLocal.fecha ===fechaFor){
+                const div=document.querySelector(".divFondo");
+                div.style.display='none';
+            }else{
+                localStorage.removeItem("DineroCaja");
+                dineroCajaMostForm();
+            }
+        }else{
+            dineroCajaMostForm();
+        }
+
+    }
+
+    //DINERO EN CAJA, VENTANA MODAL
+    function dineroCajaMostForm(){
+        //VARIABLE
+        const div=document.querySelector(".divFondo");
+        document.querySelector('#dineroCaja').value=0;
+        const dineroLocal=JSON.parse(localStorage.getItem("DineroCaja")) || '';
+        if(!dineroLocal){
+
+            div.style.display='flex';
+        }else{
+            div.style.display='none';
+        }
+    }
+
+    //GUARDAR DINERO EN CAJA EN LOCALSTORAGE
+    function dineroCajaGuardar(){
+        //VARIABLES
+        const dineroCaja = parseInt(document.querySelector('#dineroCaja').value);
+        
+        
+
+        //VALIDAR QUE SI SE ESCRIBIO UNA CANTIDAD
+        if(dineroCaja!=""){
+            let objDinero={
+                dinero : dineroCaja,
+                fecha: fechaFor
+            }
+
+            localStorage.setItem("DineroCaja", JSON.stringify(objDinero));//GUARDAR LOCALSTORAGE
+        }else{
+            $(".divError").slideToggle('fast');
+                        setTimeout(function (){
+                                $(".divError").slideToggle('fast');
+                                },2000
+                            );
+        }
+        dineroCajaValidarFecha();
+    }
+
+
+
+    /////////////////////////////////////
+
+
+    function datFecha(){
+        
+        ///MOSTRAR FECHA
+        const sem= fecha.getDay();
+        const hoy = fecha.getDate();
+        const mes = fecha.getMonth(); 
+        const ano = fecha.getFullYear();
+        
+        var meses=["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre","Diciembre"];
+        
+        var semana=["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+    
+        var StringFecha=semana[sem]+" "+hoy+" de "+meses[mes]+" del "+ano;
+        document.getElementById("fecha").innerHTML=StringFecha;
+        
+        //MOSTRAR HORA
+        var hora = fecha.getHours();
+        var min=fecha.getMinutes();
+        if(hora<12){
+            hora=hora+":"+min+" am";
+        }else{
+            switch(hora){
+            case 12: hora="12:"+min+" pm"; break;
+            case 13: hora="01:"+min+" pm"; break;
+            case 14: hora="02:"+min+" pm"; break;
+            case 15: hora="03:"+min+" pm"; break;
+            case 16: hora="04:"+min+" pm"; break;
+            case 17: hora="05:"+min+" pm"; break;
+            case 18: hora="06:"+min+" pm"; break;
+            case 19: hora="07:"+min+" pm"; break;
+            case 20: hora="08:"+min+" pm"; break;
+            case 21: hora="09:"+min+" pm"; break;
+            case 22: hora="10:"+min+" pm"; break;
+            case 23: hora="11:"+min+" pm"; break;
+            case 24: hora="12:"+min+" am"; break;
+            }
+        }
+        
+        document.getElementById("hora").innerHTML=hora;
+        
+    }
+    
+
+  
+
+    /////////////////////////////////////////////////////////////////////////////////////
+    //CARGAR CUENTAS DESDE LA BASE DE DATOS
+    function cargarCuentas(){
+        let fieldFecha=document.querySelector('#fieldFecha').value;
+               $.ajax({
+				type:'POST',
+                complete: function() { mostrarCuentas()},
+                data:{fieldFecha},
+				url:'cargar_cuentas.php',
+				success:function(resp){
+                  let cuentas = eval(resp);  
+                   localStorage.setItem("cuentasVaradero", JSON.stringify(cuentas)); 
+                },
+           });
+     }
+
+
+     ///////////////////////////////////////////////////////////////////////////
+     //MOSTRAR CUENTAS
+    function mostrarCuentas(){
+        
+        limpiarHtml(contenedor_ordenes);
+        //OBTENER LAS CUENTAS DESDE LOCASTORAGE
+        let cuentas=JSON.parse(localStorage.getItem("cuentasVaradero")) || null; 
+        //VALIDAR SI HAY CUENTAS REGISTRADAS
+        if(cuentas.length>0 && cuentas!=null){
+            //SI HAY CUENTAS REGISTRADAS
+
+            //ENCABEZADO DE LA CUENTA
+                for(c=0; c<cuentas.length; c++){
+                    let {idcliente, lugar, consumo, hora, observacion, ordenes,totalOrdenes, ordenesPendientes}=cuentas[c];
+                    console.log(observacion);
+
+
+                    let cuentaCliente=JSON.stringify(cuentas[c]);
+
+                    //CAMPO VACIO
+                    let campoObs="";
+                    observacion!="vacio" ? campoObs="("+observacion+")" : ""; 
+
+                    let div=document.createElement("div");
+                        div.classList.add("mesas");
+                        div.innerHTML=`<nav>
+                                        <table>
+                                            <tr><th colspan='3'><p class='mesa' id='mesa$cli[0]'>${lugar} </p> <p class='obser'> ${campoObs}</p></th></tr>
+                                            <tr>
+                                                <td>Total <span id='total$cli[0]'>$${new Intl.NumberFormat().format(totalOrdenes)}</span></td>
+                                                <td><a href='#/' class='pagar' onclick='cambioSugerido(${totalOrdenes},${cuentaCliente},"${lugar}",${consumo},${c},${ordenesPendientes})'>Pagar</a></td>
+                                                <td><a href='#/' class='imprimir' onclick='imprimirTicket(${cuentaCliente},${c})'>Imprimir ticket</a></td>
+                                            </tr>
+                                        </table>
+                                        <a href='#/' class='eliminarCliente' onclick='ventanaEliminar(${idcliente},"${lugar}",${ordenesPendientes})'></a>
+                                        </nav>`;
+                    contenedor_ordenes.appendChild(div);
+
+                    //ORDENES
+                    let div1=document.createElement("div");
+                        div1.classList.add("ordenes");
+                        
+                            //VALIDAR SI HAY ORDENES REGISTRADAS
+                            if(ordenes.length>0){
+                                //SI HAY ORDENES
+                                let table = document.createElement('table');
+                                let tr0=document.createElement("tr");
+                                    tr0.innerHTML=`<th>Cantidad</th>
+                                                    <th>Categoria</th>
+                                                    <th>Producto</th>
+                                                    <th>Costo</th>
+                                                    <th>Total</th>
+                                                    <th></th>`;
+                                        table.appendChild(tr0);
+                                        
+                                
+                                    for(o=0; o<ordenes.length; o++){
+                                        let {idorden,categoria,producto,cantidad,costo,total,status }=ordenes[o];
+
+                                        let tr1=document.createElement("tr");
+                                        
+                                        //STATUS DE ORDEN
+                                        let linkEliminarOrden="", linkEditarCosto="";
+                                        status==1 ? 
+                                        tr1.classList.add("ordenPendiente") 
+                                        : (linkEliminarOrden=`<a href='#/' class='eliminarOrden' onclick='eliminarOrden(${idorden}, ${idcliente},${cuentaCliente})'></a>`,
+                                            linkEditarCosto=`<a href='#/' class='editarOrden' id='linkEditarIcon${idorden}' onclick='editarCostoOrden(${costo},${idorden})'></a>
+                                            <a href='#/' class='guardarOrden' id='linkGuardarIcon${idorden}' onclick='guardarCostoOrden(${idorden}, ${idcliente},${cantidad})'></a>`) ;
+
+                                        
+                                            tr1.innerHTML=`<td>${cantidad}</td>
+                                                            <td>${categoria}</td>
+                                                            <td>${producto}</td>
+                                                            <td>$<span id='costo${idorden}'>${costo}</span>${linkEditarCosto}</td>
+                                                            <td>$${total}</td>
+                                                            <td>${linkEliminarOrden}</td>`;
+                                            table.appendChild(tr1);
+                                    }
+                                   
+                                    
+                                            //AGREGAR CAMPO DE COSTO DE ENVIO, SOLO SI ES PARA LLEVAR
+                                            if(consumo==3){
+                                                let envio = localStorage.getItem("costoEnvioVaradero");
+                                                let tr3=document.createElement("tr");
+                                                tr3.innerHTML=`
+                                                    <td colspan='6' class='envio'>Envio: <input type='number' id='fieldEnvio${c}' value='${envio}'></td>`;
+                                                table.appendChild(tr3);
+                                                }
+
+                                        //AGREGAR LINK PARA PRODUCTO COMUN
+                                        let tr4=document.createElement('tr');
+                                            tr4.innerHTML=`<td colspan='6'><a href='#/' onclick='agregarComunForm(${idcliente})'>Agregar producto común</a></td>`;
+                                            table.appendChild(tr4);
+
+                                    
+                                div1.appendChild(table);
+
+                            }else{
+                                //NO HAY ORDENES
+                                let p= document.createElement("p");
+                                p.classList.add("noHay");
+                                p.textContent="No hay ordenes registradas";
+                                p.classList.add("nohay");
+                                div.appendChild(p);
+
+                            } 
+                            div.appendChild(div1);
+                }
+
+
+        }else{
+            //NO HAY CUENTAS REGISTRADAS
+            let p= document.createElement("p");
+            p.classList.add("noHay");
+            p.textContent="No hay cuentas registradas";
+            p.classList.add("nohay");
+            contenedor_ordenes.appendChild(p);
+        }
+
+
+        document.querySelector("#ordent").textContent=cuentas.length;
+    }
+
+
+
+    function limpiarHtml(content){
+            while(content.firstChild){
+                content.removeChild(content.firstChild);
+            }
+        }
+
+
+    ///////////////////////////////////////////////////////////////////////////
+    //AGREGAR PRODUCTO COMUN
+
+    function agregarComunForm(idcliente){
+        const div=document.querySelector(".divFondoAgregarProducto");
+                div.style.display='flex';
+        
+        let div1=document.querySelector('.divContenedorProducto table');
+        let tr1=document.querySelectorAll('.divContenedorProducto table tr');
+         if(tr1[4]==undefined){
+            
+             let tr= document.createElement('tr');
+                tr.innerHTML=`<th colspan="2"><button onclick='agregarProductoComun(${idcliente})'>Agregar</button></th>`;
+             div1.appendChild(tr);
+         }
+    }
+
+    function cerrarProductoFormulario(){
+        $(".divFondoAgregarProducto").hide();
+        document.querySelector('#formProducto').reset();
+    }
+
+    function totalProducto(){
+        let fieldCantidadComun= parseInt(document.querySelector('#fieldCantidadComun').value) || 0;
+        let fieldCostoComun= parseInt(document.querySelector('#fieldCostoComun').value) || 0;
+        let total=fieldCantidadComun*fieldCostoComun;
+        document.querySelector('#fieldTotalComun').value=total;
+
+    }
+    
+    function agregarProductoComun(idcliente){
+        $("#formProducto").on('submit', function(evt){
+            evt.preventDefault();  
+        });
+
+        let cuentas=JSON.parse(localStorage.getItem("cuentasVaradero")) || null; 
+
+        let divTable=document.querySelector('.divContenedorProducto form table');
+        let tr4=document.querySelectorAll('.divContenedorProducto form table tr')[4];
+
+        let fieldCantidadComun= document.querySelector('#fieldCantidadComun').value;
+        let fieldProductoComun= document.querySelector('#fieldProductoComun').value;
+        let fieldCostoComun= document.querySelector('#fieldCostoComun').value;
+        let fieldTotalComun= document.querySelector('#fieldTotalComun').value;
+
+        let orden={
+            "producto":fieldProductoComun,
+            "categoria":"comun",
+            "costo":fieldCostoComun,
+            "status":2,
+            "total":fieldTotalComun,
+            "cantidad":fieldCantidadComun
+        };
+
+         if(fieldCantidadComun!="" && fieldProductoComun !="" && fieldCostoComun!="" && fieldTotalComun){
+         
+            $.ajax({
+				type:'POST',
+				url:'agregar_producto.php',
+                data:{idcliente,fieldCantidadComun,fieldProductoComun,fieldCostoComun,fieldTotalComun},
+				success:function(resp){
+                   let resultado = eval(resp); 
+                    if(resultado>0){
+                          ventanasModales("bien","Producto registrado");
+                         orden['idorden']=resultado;
+                
+                         //AGREGAR ORDEN AL LOCALSTORAGE
+                            let cuentaCliente=cuentas.filter(c=>c.idcliente==idcliente);
+                                cuentaCliente[0].ordenes.push(orden);
+
+                                cuentaCliente[0].totalOrdenes=cuentaCliente[0].ordenes.reduce((total, producto)=>total + parseInt(producto.total),0);
+                       
+                            localStorage.setItem('cuentasVaradero',JSON.stringify(cuentas));
+                            
+                             mostrarCuentas();
+                    }else{
+                        ventanasModales("erro","Producto no registrado");
+                    }
+                    cerrarProductoFormulario();
+                },
+           });
+        }else{
+            
+            let tr=document.createElement("tr");
+                tr.innerHTML=`<td colspan='2' class='nohay'>*Campos vacios</td>`;
+                divTable.insertBefore(tr,tr4);
+                setTimeout(function (){
+                limpiarHtml(tr);
+                },3000);
+        }
+        
+    }
+
+
+
+    ///////////////////////////////////////////////////////////////////////////
+    //ELIMINAR ORDEN
+
+    //ELIMINAR ORDEN
+    function eliminarOrden(idorden,idcliente, cuentaCliente){
+        let cuentas=JSON.parse(localStorage.getItem("cuentasVaradero")) || null; 
+        
+        $.ajax({
+             type:'POST',
+             url:'eliminar_orden.php',
+             data:{idorden,cuenta:JSON.stringify(cuentaCliente),usuario},
+             success:function(respro){
+                //  $("#resultado").html(respro);
+                 let resultado = eval(respro);
+                 if(resultado==0){
+                    ventanasModales("bien","Orden eliminada");
+
+                    //ELIMINAR ORDEN DEL LOCALSTORAGE
+                    let cuentaCliente=cuentas.filter(c=>c.idcliente==idcliente);
+                    cuentaCliente[0].ordenes=(cuentaCliente[0].ordenes).filter(o=>o.idorden!=idorden);  
+                    cuentaCliente[0].totalOrdenes=cuentaCliente[0].ordenes.reduce((total, producto)=>total + parseInt(producto.total),0);
+                    
+                    localStorage.setItem('cuentasVaradero',JSON.stringify(cuentas));
+                    mostrarCuentas();
+                 }else{
+                    ventanasModales("erro","Orden no eliminada");
+                 }
+                 
+               
+             }
+            }); 
+    }
+
+    //ELIMINAR CUENTA
+    function ventanaEliminar(idcliente,lugar,ordenesPendientes){
+        const div=document.querySelector(".divFondoEliminar");
+                div.style.display='flex';
+
+        let div1=document.querySelector(".divFondoEliminar div");
+            div1.innerHTML=` <nav>
+                            <h1>Eliminar cliente</h1>
+                             </nav>
+                             <table>
+                                <tr>
+                                    <th>¿Seguro que desea eliminar el cliente <span>${lugar}</span>?</th>
+                                </tr> 
+                                <tr>
+                                    <td><button class='btnNo' onclick='cancelarVentanaEliminar()'>No</button><button onclick='eliminarCuenta(${idcliente}, ${ordenesPendientes})'>Si</button></td>
+                                </tr>
+                            </table>`;
+    }
+    
+    function cancelarVentanaEliminar(){
+        $(".divFondoEliminar").hide();
+
+    }
+
+    function eliminarCuenta(idcliente,ordenesPendientes){
+        let cuentas=JSON.parse(localStorage.getItem("cuentasVaradero")) || null;
+        let cuentaSeleccionada=JSON.stringify(cuentas.filter(i=>i.idcliente==idcliente)); 
+
+        if(ordenesPendientes==0){
+            $.ajax({
+            type:'POST',
+            url:'eliminar_cliente.php',
+            data:{idcliente,cuentaSeleccionada,usuario},
+            success:function(respro){
+                
+                //$("#resultado").html(respro);
+                 let resultado = eval(respro);
+                 if(resultado==0){
+                     ventanasModales("bien","Cuenta eliminada");
+                                
+                     cuentas=cuentas.filter(o=>o.idcliente!=idcliente);     
+                     localStorage.setItem('cuentasVaradero',JSON.stringify(cuentas));
+                     mostrarCuentas();
+                     cancelarVentanaEliminar();
+                 }else{
+                     ventanasModales("erro","Cuenta no eliminada");
+                 }
+            }
+         }); 
+        }else{
+            ventanasModales("adve","Orden pendiente");
+            cancelarVentanaEliminar();
+        }
+        
+    }
+
+    //////////////////////////////////////////////////////////////////////////
+    //EDITAR COSTO
+
+    function editarCostoOrden(costo, idorden){
+        $("#linkEditarIcon"+idorden).hide();
+        $("#linkGuardarIcon"+idorden).show();
+         let spanTotal=document.querySelector('#costo'+idorden);
+             spanTotal.innerHTML=`<input type='number' value=${costo}>`;
+    }
+
+     function guardarCostoOrden(idorden, idcliente,cantidad){
+         let inptCosto=parseInt(document.querySelector('#costo'+idorden+" input").value);
+        
+         let cuentas=JSON.parse(localStorage.getItem("cuentasVaradero")) || null; 
+         let cuentaCliente=cuentas.filter(c=>c.idcliente==idcliente);
+  
+       
+        //  console.log(idorden);
+         $.ajax({
+	 			type:'POST',
+	 			url:'editar_costoOrden.php',
+                data:{idorden,inptCosto,cantidad},
+	 			success:function(resp){
+                    let resultado = eval(resp); 
+                    if(resultado>0){
+                            ventanasModales("bien","Costo actualizado");
+
+                     //ACTUALIZAR COSTO EN LOCALSTORAGE
+                    //  let ordenes=cuentaCliente[0].ordenes;
+                     let ordenSeleccionada=(cuentaCliente[0].ordenes).filter(o=>o.idorden==idorden); 
+                    //   console.log(ordenSeleccionada);
+                      ordenSeleccionada[0].costo=inptCosto;
+                      ordenSeleccionada[0].total=parseInt(ordenSeleccionada[0].cantidad)*parseInt(inptCosto);
+                      cuentaCliente[0].totalOrdenes=cuentaCliente[0].ordenes.reduce((total, producto)=>total + parseInt(producto.total),0);
+                     
+                             localStorage.setItem('cuentasVaradero',JSON.stringify(cuentas));
+                            
+                              mostrarCuentas();
+
+                    }else{
+                     ventanasModales("erro","Costo no actualizado");
+                   }
+                  
+                 },
+            });
+
+     }
+
+
+    /////////////////////////////////////////////////////////////////////////
+    //TICKET
+     function imprimirTicket(cuentaCliente,c){
+
+        console.log(cuentaCliente);
+        //VARIABLES
+        let ordenesAgrupadas=[];
+
+        //ORDENES DE LA CUENTA DEL CLIENTE
+        let ordenes =cuentaCliente.ordenes;
+                if(ordenes.length>0){
+                    for(o=0; o<ordenes.length; o++){
+                    let {producto, categoria, costo,cantidad,total}=ordenes[o];
+                    const resultado = ordenesAgrupadas.filter(pro => pro.producto == producto && pro.costo==costo && pro.categoria==categoria);
+                    
+                    if(resultado.length>0){
+                        resultado[0].cantidad=parseInt(resultado[0].cantidad)+parseInt(cantidad);
+                        resultado[0].total=parseInt(resultado[0].cantidad)*parseInt(costo);
+                    }else{
+                        orden={
+                            "producto": producto,
+                            "categoria":categoria,
+                            "cantidad": parseInt(cantidad),
+                            "costo": parseInt(costo),
+                            "total": parseInt(total)
+                        }
+                        ordenesAgrupadas.push(orden);
+                    }
+                }
+                //ORDENES AGRUPADAS AGREGADAS AL CLIENTE
+                cuentaCliente.ordenes=ordenesAgrupadas;
+                let cuenta=JSON.stringify(cuentaCliente);
+
+                //OBTENER CAMPO DE ENVIO
+                let fieldEnvio=document.querySelector('#fieldEnvio'+c);
+                    fieldEnvio!=null? fieldEnvio=fieldEnvio.value: fieldEnvio=0 ;
+
+                window.open("ticket.php?cue="+cuenta+"&&env="+fieldEnvio,'_blank');
+        }else{
+            ventanasModales("adve","No hay ordenes");
+        }
+      
+     }
+
+
+
+    ////////////////////////////////////////////////////////////////////////
+    //PAGAR
+
+    function cambioSugerido(totalOrdenes, cuentaCliente, lugar,consumo,c,ordenesPendientes){
+        
+        const div=document.querySelector(".divFondoCambioSugerido");
+                div.style.display='flex';
+
+                let h3=document.querySelector('.divContenedorCambio h3');   
+                    h3.innerHTML=`Cuenta a pagar de <span> ${lugar} </span>`;
+
+                    ///SI ES A DOMICILIO, SUMAR EL COSTO DE ENVIO
+                    let envio;
+                    if(consumo==3){
+                                envio=document.querySelector('#fieldEnvio'+c);
+                                if(envio!=null){
+                                     envio= parseInt(envio.value);
+                                     totalOrdenes=totalOrdenes+envio;
+                                }
+                            
+                    }
+            
+
+                    let billete=document.querySelector('#fieldBillete');
+                    let spanCambio=document.querySelector('#spanCambio');
+                    let spanTotal=document.querySelector('#spanTotal');
+                    let cambio=0;
+                    spanTotal.textContent="$"+totalOrdenes;
+
+                    let cambios=[100,200,300,400,500,600,700,800,900,1000,1100,1200,1300];
+                        for(a=0; a<cambios.length; a++){
+                            if(totalOrdenes<cambios[a]){
+                                billete.value=cambios[a];
+                                cambio=(cambios[a])-totalOrdenes;
+                                a=cambios.length;
+                            }else{
+                                billete.value=0;
+                            }
+                        }
+                    spanCambio.textContent="$"+cambio;
+
+                    cuentaCliente=JSON.stringify(cuentaCliente);
+
+                    let tr1=document.querySelectorAll('.divContenedorCambio table tr')[3];
+      
+                        tr1.innerHTML=`<th colspan="2" >
+                            <button onclick='cancelarPago()' class='btnCancelar'>Cancelar</button>
+                            <button onclick='pagar(${cuentaCliente},${c},${ordenesPendientes})'>Aceptar</button>
+                            </th>`;
+                
+                        let div1=document.querySelector('.divContenedorCambio table');
+                             div1.appendChild(tr1);
+    }
+
+
+
+    function cancelarPago(){
+        $(".divFondoCambioSugerido").hide();
+    }
+
+    function campoCambio(){
+        let billete=document.querySelector('#fieldBillete').value;
+        let spanTotal=parseInt((document.querySelector('#spanTotal').textContent).substr(1));
+        let cambio=billete-spanTotal;
+        document.querySelector('#spanCambio').textContent="$"+cambio;
+
+    } 
+
+    function pagar(cuentaCliente,c,ordenesPendientes){
+        $(".divFondoCambioSugerido").hide();
+
+        let idcliente=cuentaCliente.idcliente;
+        let consumo=cuentaCliente.consumo;
+
+
+        //SI ES A DOMICILIO, SUMAR EL COSTO DE ENVIO
+        let envio=0;
+            if(consumo==3){
+                envio=document.querySelector('#fieldEnvio'+c);
+                if(envio!=null){
+                        envio= parseInt(envio.value);
+                }
+                    
+            }
+
+          let cuentas=JSON.parse(localStorage.getItem("cuentasVaradero")) || null; 
+
+          if((cuentaCliente.ordenes).length>0){
+                if(ordenesPendientes==0){
+                    $.ajax({
+                    type:'POST',
+                    url:'pagar.php',
+                    data: {cuenta:JSON.stringify(cuentaCliente),envio},
+                    success:function(resp){
+                         //$("#resultado").html(resp);
+                        let resultado=eval(resp);
+                            if(resultado>0){
+                                //ORDENES PAGADAS
+                                ventanasModales("bien","Cuenta pagada");
+
+                                    cuentas=cuentas.filter(c=>c.idcliente!=idcliente);                       
+                                    localStorage.setItem('cuentasVaradero',JSON.stringify(cuentas));   
+                                    mostrarCuentas();   
+                            }else{
+                                //ORDENES NO PAGADAS
+                                ventanasModales("erro","Ordenes no pagadas");
+                            }
+                        }
+                    });
+            }else{
+                ventanasModales("adve","Orden pendiente");
+                
+            }
+          }else{
+             ventanasModales("adve","No hay ordenes");
+          }
+         
+         
+    }
+
+
+    ///////////////////////////////////////////////////////////////////
+     //ENVIO
+
+    //CARGAR COSTO DE ENVIO
+    function cargar_envio(){
+    let geEnvio=localStorage.getItem("costoEnvioVaradero");//OBTENER LOCALSTORAGE (PRODUCTOS)
+
+        //VALIDAR SI PRODUCTOS ESTA CREADO EN LOCALSTORAGE
+        if(geEnvio == null){
+        //NO ESTA CREADO
+            $.ajax({
+            type:'POST',
+            url:'cargar_envio.php',
+            success:function(respro){
+                // let envio = parseInt(eval(respro));
+                localStorage.setItem('costoEnvioVaradero', parseInt(eval(respro)));
+                }
+            });
+
+        }else{
+        //SI ESTA CREADO     
+        }
+    }
+
+    ////////////////////////////////////////////////////////////////////////
+    //USUARIO
+    
+    function validarUsuario(){
+        if(usuario==null){
+            cerrarSesion();
+        }else{
+            if(usuario=="cajaadmin"){
+                $("#eliminados").show();
+            }
+            document.querySelector('.header_cta').textContent=usuario;
+        }
+    }
+
+    function cerrarSesion(){
+        sessionStorage.removeItem("usserCaj");
+        localStorage.removeItem('cuentasVaradero');
+         localStorage.removeItem("costoEnvioVaradero");
+        window.location.href='index.html';
+    }
+
+
+
+</script>

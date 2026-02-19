@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' >
+    <!--<meta name="viewport" content="width=device-width,initial-scale=1.0">
+    -->
+    <title>Eliminadas</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="eliminados.css">
+    <link rel="stylesheet" href="../../header.css">
+    <link rel="stylesheet" href="../../ventanas.css">
+    <link rel="stylesheet" href="../../spinner.css">
+    
+    <!-- ICONO -->
+    <link rel="shortcut icon" type='image/x-icon' href='../../img/ordenar.png'> 
+</head>
+<body>
+   
+   <!-- CABECERA-->
+  <header class='header'>
+   
+    <!-- TITULO -->
+    <div class="header_title">
+        <h1 class='header_tit'>Eliminadas</h1>
+    </div>
+    
+    <!-- BOTON SALIR -->
+    <div class="header_salir">
+        <a href="../index.html" class='header_cta' onclick='cerrarSesion()'></a>
+    </div>
+  </header>
+
+
+  
+  <div id="versionSistema">
+    <p>Versión 2.0</p>
+  </div>
+  
+  <!-- CONTAR CLIENTES -->
+    <div class='contar_clientes'>
+        <h1>Cuentas eliminadas: <spam id='ordent'> </spam></h1>
+        <p id='total'></p>
+    </div>
+
+
+    <!-- BUSCAR VENTAS -->
+<section class='contenido_buscar'> 
+    <!-- FORM DE BUSCAR -->
+     <div class='form_buscar'>
+         <input type="date" class='form_input' id='fieldBuscar' >
+         <button onclick='filtroBuscar()' class='form_cta'>Buscar</button>
+        
+     </div>
+  
+    
+  <!-- MOSTRAR ORDENES ENTREGADAS-->
+  <section class='mostrar_eliminados'>
+
+
+
+  </section>
+
+
+        <!-- VENTANA MODAL DINERO EN CAJA -->
+        <div class="divFondo">
+            <div class="divContenedor">
+                <table>
+                    <tr>
+                        <th><h1>Dinero en caja</h1></th>
+                    </tr>
+                    <tr>
+                        <td><input type="number" value=0 id="dineroCaja"> </td>
+                    </tr>
+                    <tr>
+                        <td class="divError">¡Por favor ingresa un numero valido!</td>
+                    </tr>
+                    <tr>
+                        <td><button class="cta" onclick="dineroCajaGuardar()">Aceptar</button></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+
+        <!-- /////////////////////////// -->
+    <!-- VENTANA MODAL GENERAL -->
+    <div class="modal_confirmado" id='modal'>
+        <p class='modal_text'></p>
+    </div>
+
+    <div id="resultado">
+
+    </div>
+
+
+  <!-- PIE DE PAGINA HISTORIAL -->
+  <footer>
+    <p><a href="../caja.html">Regresar</a></p>
+  </footer>
+  
+  <!-- INCLUIR JQUERY -->
+  <script src="../../jquery/jquery-3.5.1.min.js"></script>
+  <!-- <script src='../../jquery/usuario.js'></script> -->
+  <script src='../../jquery/ventanas.js'></script>
+</body>
+</html>
+
+
+<script type="text/javascript">    
+    //EJECUTAR AL CARGAR EL DOCUMENTO
+$(document).ready(function(){
+        
+
+        cargarCuentas();
+});
+
+//VARIABLES
+let cuentaseliminadas=[];
+let contenedor=document.querySelector('.mostrar_eliminados');
+let usuario=sessionStorage.getItem("usserCaj");
+
+
+//COLOCAR FECHA ACTUAL EN EL CAMPO DE BUSCAR
+let date = new Date();
+        let output = date.getFullYear() +"-"+ String(date.getMonth() + 1).padStart(2, '0')  + '-' + String(date.getDate()).padStart(2, '0');
+        document.querySelector("#fieldBuscar").value=output;
+//AGREGAR FUNCION AL PRESIONAR TECLA EN BUSCAR
+// document.querySelector("#fieldBuscar").addEventListener("input", filtroBuscar);
+
+
+/////////////////////////////////////////////////////////////////////////////////////
+    //CARGAR CUENTAS ELIMINADAS DESDE LA BASE DE DATOS
+    function cargarCuentas(){
+               $.ajax({
+				type:'POST',
+                beforeSend: function() { Spinner()},
+                complete: function() {filtroBuscar(),validarUsuario() },
+				url:'cargar_eliminadas.php',
+				success:function(resp){
+                   cuentaseliminadas = eval(resp);  
+
+                },
+           });
+     }
+
+     function filtroBuscar(){
+        let fieldBuscar= document.querySelector("#fieldBuscar").value;
+        eliminadasbuscar=[];
+        cuentaseliminadas .forEach(p=>{
+                    let resultado= p.fechaf.includes(fieldBuscar); 
+                    if(resultado){
+                        eliminadasbuscar.push(p);
+                    }
+            });
+            mostrarCuentaseliminadas(eliminadasbuscar)
+     }
+
+
+    function mostrarCuentaseliminadas(eliminadasbuscar){
+        limpiarHtml(contenedor);
+
+        document.querySelector('#ordent').textContent=eliminadasbuscar.length;
+
+        //VALIDAR SI HAY CUENTAS ELIMINADAS
+        if(eliminadasbuscar.length>0){
+                
+                for(e=0; e<eliminadasbuscar.length; e++){
+                    let {lugar, tipo, totalOrdenes,ordenes, horapedido, fecha, horaeliminado,idclienteeliminado} = eliminadasbuscar[e];
+                    let div1= document.createElement('div');
+                    div1.classList.add("mesas");
+                    div1.innerHTML=`<nav>
+                                <table>
+                                    <tr>
+                                        <th class='thEliminar'><a href='#/' class='iconEliminar' onclick='eliminarCuenta(${idclienteeliminado},"${tipo}")'></a></th>
+                                        <th colspan='2' class='iconCliente'><p class='mesa' id='mesa$cli[0]'>${lugar}</p></th>
+                                        <th class='total'>Total: <span id='total$cli[0]'>$${new Intl.NumberFormat().format(totalOrdenes)}</span></th>
+
+                                    </tr>
+                                    <tr>
+                                        
+                                    </tr>
+                                </table>
+                                <a href='#/' class='eliminarCliente' onclick='eliminarCliente($cli[0])'></a>
+                            </nav>`;
+
+                    //ORDENES DE LA CUENTA ELIMINADA
+                        let div2=document.createElement("div");
+                            div2.classList.add("ordenes");
+
+                            let table = document.createElement('table');
+
+                            let tr1=document.createElement('tr');
+                                tr1.innerHTML=` <th>Cantidad</th>
+                                                <th>Categoria</th>
+                                                <th>Producto</th>
+                                                <th>Costo</th>
+                                                <th>Total</th>
+                                                <th>Usuario</th>`; 
+
+                            table.appendChild(tr1);
+
+                            for(o=0; o<ordenes.length; o++){
+                                let {cantidad, categoria, producto, costo, total, usuario}=ordenes[o];
+                                let tr2=document.createElement('tr');
+                                    tr2.innerHTML=`<td>${cantidad}</td>
+                                                    <td>${categoria}</td>
+                                                    <td>${producto}</td>
+                                                    <td>$${costo}</td>
+                                                    <td>$${total}</td>
+                                                    <td>${usuario}</td>
+                                                    `;
+                                table.appendChild(tr2);
+                            }
+
+                            //COLOCAR DE ENVIO SI ES A DOMICILIO
+                            // if(consumo==3){
+                            //     let tr3=document.createElement('tr');
+                            //         tr3.innerHTML=`<td>Envio: <span>${envio}</span><td>`;
+                            // }
+
+                            div2.appendChild(table);
+                            div1.appendChild(div2);
+
+                    contenedor.appendChild(div1);
+
+                    //INFRMACION DE ELIMINACIÓN
+                    let div3=document.createElement("div");
+                        div3.classList.add("horaEliminado");
+                        div3.innerHTML=`<table>
+                                            <tr>
+                                                <td>Tipo de eliminación: <span>${tipo}</span></td>
+                                                <td>Pedido: <span>${horapedido}</span></td>
+                                                <td>Eliminación: <span>${horaeliminado}</span></td>
+                                                <td>Fecha: <span>${fecha}</span></td>
+                                            </tr>
+                                        </table>`;
+                    contenedor.appendChild(div3);
+                }
+        }else{
+            //NO HAY CUENTAS ELIMINADAS
+            let p= document.createElement("p");
+            p.textContent="No hay cuentas eliminadas";
+            p.classList.add("nohay");
+            contenedor.appendChild(p);
+            
+        }
+
+
+        
+
+
+    }
+
+
+    function Spinner(){
+            const divSpinner = document.createElement('div');
+            divSpinner.classList.add('spinner');
+            divSpinner.innerHTML=`
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>`;
+            contenedor.appendChild(divSpinner);
+        }
+
+    function limpiarHtml(content){
+        while(content.firstChild){
+            content.removeChild(content.firstChild);
+        }
+    }
+
+
+    /////////////////////////////////////////////////////////////////
+    ///ELIMINAR
+
+    //ELIMINAR CUENTA POR COMPLETO
+    function eliminarCuenta(idclienteeliminado,tipo){
+        
+        $.ajax({
+            type:'POST',
+            url:'eliminar_cuenta.php',
+            data: {idclienteeliminado,tipo},
+            success:function(resp){
+                let resultado=eval(resp);
+      
+                    if(resultado==0){
+                        //CUENTA ELIMINADO
+                        ventanasModales("bien","Cuenta eliminada");
+                        cargarCuentas();
+                    }else{
+                        //CUENTA NO ELIMINADO
+                        ventanasModales("erro","Cuenta no eliminada");
+                    }
+                 }
+             });
+    }
+
+////////////////////////////////////////////////////////////////////////
+    //USUARIO
+    
+    function validarUsuario(){
+        if(usuario==null){
+            cerrarSesion();
+        }else{
+            if(usuario!="cajaadmin"){
+                window.location.href='../caja.html';
+            }
+            document.querySelector('.header_cta').textContent=usuario;
+        }
+    }
+
+    function cerrarSesion(){
+        sessionStorage.removeItem("usserCaj");
+        localStorage.removeItem('cuentasVaradero');
+         localStorage.removeItem("costoEnvioVaradero");
+        window.location.href='index.html';
+    }
+
+
+</script>

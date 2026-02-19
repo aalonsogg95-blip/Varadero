@@ -1,0 +1,141 @@
+/*********************************************
+CARGAR CUENTAS ELIMINADAS
+******************************************/
+
+#eliminados .content-tabla{
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:30px;
+    flex-direction: column;
+    padding-bottom: 50px;
+}
+#eliminados .content-tabla table{
+    width: 100%;
+    text-align: center;
+}
+
+
+
+#eliminados .content-tabla .mesa{
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    /* box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px; */
+    height: 100%;
+    width: 70%;
+    margin: 5px auto;
+    padding-bottom: 10px;
+    border-radius: 10px;
+    position: relative;
+    background-color: rgba(255, 0, 0, 0.086) !important;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+
+#eliminados .content-tabla .mesa .thPrincipal{
+    padding-top:5px;
+    padding-bottom: 10px;
+}
+
+#eliminados .content-tabla .mesa .spanCliente{
+    padding: 4px 8px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+#eliminados .content-tabla .mesa .spanTotal{
+    font-weight: 400;
+}
+
+#eliminados .content-tabla .mesa .divFactura{
+    position: absolute;
+    right: 10px;
+    top:10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:10px;
+}
+
+#eliminados .content-tabla .mesa .divFactura label{
+    font-size: 0.9em;
+    font-weight: 400;
+    margin: 0px;
+    padding: 0px;
+}
+
+#eliminados .content-tabla .mesa a{
+    color: var(--color3);
+    font-weight: 400;
+   
+}
+
+#eliminados .content-tabla .mesa .cabecera{
+    padding: 10px 20px;
+    border-bottom: 2px solid #ccc;
+}
+
+#eliminados .content-tabla .mesa .eliminarcuenta{
+    position: absolute;
+    top:3px;
+    left: 10px;
+    color: red;
+}
+
+#eliminados .content-tabla .formaPago{
+    font-weight: 400;
+    font-size: 0.9em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 3px 6px;
+    color: #797979;
+}
+
+
+/* ORDENES */
+#eliminados .content-tabla .mesa .ordenes {
+    padding: 10px 20px;
+}
+#eliminados .content-tabla .mesa .ordenes table{
+    border-collapse: collapse;
+    text-align: center;
+}
+#eliminados .content-tabla .mesa .ordenes table th{
+    font-size: 0.9em;
+}
+#eliminados .content-tabla .mesa .ordenes table tbody tr{
+    border: 1px solid #ccc;
+}
+#eliminados .content-tabla .mesa .ordenes table  td{
+    text-align: center;
+    padding: 4px 0;
+}
+
+#eliminados .content-tabla .mesa .ordenes .editar{
+    color: var(--color3);
+    font-size: 0.9em;
+}
+#eliminados .content-tabla .mesa .ordenes .eliminarorden{
+    color: red;
+}
+
+
+#eliminados .nohay{
+    text-align: center;
+    color:#505050;
+    font-size: 0.9em;
+    margin: 50px 0;
+}
+#eliminados .nohay{
+    margin: 10px 0;
+    text-align: center;
+    color:#505050;
+    font-weight: 0.9em;
+}
+#eliminados .nohay i{
+    position: relative;
+    right: 2px;
+    font-size: 0.9em;
+}

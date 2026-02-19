@@ -1,0 +1,48 @@
+.btnStatus{
+    background-color: var(--color3);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 40px;
+    font-size: 0.9em;
+}
+.btnStatus:hover{
+    color: white;
+}
+
+.btnStatus.agotado{
+    background-color: red !important;
+}
+
+
+
+/*==================
+MENSAJE DE ERROR
+====================*/
+.fields-messageProductos{
+    color: red;
+    font-size: 0.9em;
+}
+
+
+
+
+
+
+/* Media Queries para dispositivos móviles */
+@media only screen and (max-width: 768px) {
+
+    .link_agregar{
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+   
+    .productos_btns{
+        width: 100%;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        padding: 10px 0;
+    }
+
+}

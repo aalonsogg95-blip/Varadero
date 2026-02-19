@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' >
+    <!--<meta name="viewport" content="width=device-width,initial-scale=1.0">
+    -->
+    <title>Ordenar</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="orden.css">
+    <link rel="stylesheet" href="ventanas.css">
+    <link rel="stylesheet" href="../header.css">
+    
+    <!-- ICONO -->
+    <link rel="shortcut icon" type='image/x-icon' href='../img/ordenar.png'> 
+</head>
+<body>
+   
+   <!-- CABECERA-->
+  <header class='header'>
+   
+    <!-- TITULO -->
+    <div class="header_title">
+        <h1 class='header_tit'>Ordenar</h1>
+    </div>
+    
+    <!-- BOTON SALIR -->
+   
+    <div class="header_salir">
+        <a href="#/" class='header_cta' onclick='cerrarSesion("ord")'></a>
+    </div>
+   
+  </header>
+ <!-- CATEGORIAS -->
+  <div class='categorias'>
+
+         <input type="checkbox" id="btn-menu" onclick='buttonMenu()'>
+         <label for="btn-menu" id='imgList'>Menu</label>
+      
+      <nav class='items' id='ite'>
+       <ul>
+          <li class="butCam"><a href='#/' onclick='menu(0)' class='cam icon'>Camarones</a></li>
+           <li class="butFil"><a href='#/'onclick='menu(1)' class='fil icon'>Filetes</a></li>
+           <li class="butEspC"><a href='#/'onclick='menu(2)' class='esp icon'>Esp Caliente</a></li>
+           <li class="butFaj"><a href='#/'onclick='menu(3)' class='faj icon'>Fajitas</a></li>
+            <li class='butCoc'><a href='#/'onclick='menu(4)' class='coc icon'>Cocteles</a></li>
+            <li class="butAgu"><a href='#/'onclick='menu(5)' class='agu icon'>Aguachiles</a></li>
+            <li class="butEnt"><a href='#/'onclick='menu(6)' class='ent icon'>Ceviche</a></li>
+            <li class="butTos"><a href='#/'onclick='menu(7)' class='tos icon'>Tostadas</a></li>
+            <li class="butTac"><a href='#/'onclick='menu(8)' class='tac icon'>Tacos</a></li>
+            <li class="butEspF"><a href='#/'onclick='menu(9)' class='espf icon'>Esp Fría</a></li>
+            <li class="butEns"><a href='#/'onclick='menu(10)' class='ens icon'>Mixología</a></li>
+            <li class="butCor"><a href='#/'onclick='menu(11)' class='cor icon'>Cortes</a></li>
+            <li class="butPos"><a href='#/'onclick='menu(12)' class='pos icon'>Postre</a></li>
+            <li class="butBeb"><a href='#/'onclick='menu(13)' class='beb icon'>Bebidas</a></li>
+            <li class="butSna"><a href='#/'onclick='menu(14)' class='sna icon'>Snacks</a></li>
+            <li class="butInf"><a href='#/'onclick='menu(15)' class='inf icon'>Infantiles</a></li>
+            <li class="butLic"><a href='#/'onclick='menu(16)' class='lic icon'>Licores</a></li>
+            <li class="butMan"><a href='#/'onclick='menu(17)' class='man icon'>Mariscadas</a></li>
+            <li class="butExt"><a href='#/'onclick='menu(18)' class='ext icon'>Extras</a></li>
+            <li class="butBeb"><a href='#/'onclick='menu(19)' class='cer icon'>Cervezas</a></li>
+            <li class="butBeb"><a href='#/'onclick='menu(20)' class='icon'>Desayunos</a></li>
+        </ul>
+    </nav>
+  </div>
+  
+ 
+    <!--- CONTENEDOR PRINCIPAL -->
+    <section class='container'>
+    <!-- MOSTRAR CONSUMO -->
+  <div class="consu" id="consum">
+    <table>
+        <tr>
+            <tr><th>Consumo</th></tr>
+        </tr>
+        <tr>
+            <td id='consum'>
+            
+            <label class='radio'>Local
+             <input type='radio' class='conPro' name='consumo'
+             value='1' id='Local'>
+             <span></span>
+             </label>
+          
+           <label class='radio'>Para llevar
+             <input type='radio' class='conPro' name='consumo'
+             value='2' id='Llevar'>
+             <span></span>
+             </label>
+           
+           <label class='radio'>Domicilio 
+             <input type='radio'  class='conPro' name='consumo'
+             value='3' id='Domicilio'
+              >
+             <span></span>
+             </label>
+            
+            
+           </td>
+        </tr>
+
+        <!-- FORMULARIO DE CONSUMO -->
+        <tr>
+             <td id='mesa'>Mesa:
+             
+             <span>
+             <select id='meslocal' class='campConsumo'>
+             <option value='M1'>M1</option>
+             <option value='M2'>M2</option>
+             <option value='M3'>M3</option>
+             <option value='M4'>M4</option>
+             <option value='M5'>M5</option>
+             <option value='M6'>M6</option>
+             <option value='M7'>M7</option>
+             <option value='M8'>M8</option>
+             <option value="M9">M9</option>
+             <option value="M10">M10</option>
+             <option value="M11">M11</option>
+             <option value="M12">M12</option>
+             <option value="M13">M13</option>
+             <option value="M14">M14</option>
+             <option value="M15">M15</option>
+             <option value="M16">M16</option>
+             <option value="M17">M17</option>
+             </select>
+             </span>
+             </td>
+             </tr>
+             
+             <tr>
+             <td id='nombre'>Nombre:
+                    <p><input type='text' id='nomllevar' class='campConsumo'></p>
+                    Obs: 
+                    <p><input type='text' id='llevObs' onchange='obserCelular()'></p>
+             </td>
+             </tr>
+             
+             <tr>
+             <td id='direccion'>Dirección:     
+                   <p> <input type='text' id='dirdomicilio' class='campConsumo'></p>
+                    Cel: 
+                    <p><input type='number' id='celular' onchange='obserCelular()'></p>
+             </td>
+             </tr>
+             
+    </table>
+  </div>
+  
+  <!-- ORDENES EN COCINA --->
+  <div class='historial_ordenes'>
+      
+      
+
+  </div>
+  <div class='footer'>
+
+       
+       <label for="radlocal" class='radio rd'>
+        <input type='radio'  class='radMos radio_input' name='mosRad' id='radlocal' onclick='mostrarOrdenes()' value="1" checked>
+        <div class='radio_radio'></div><p>Local</p>
+        </label>
+        
+        <label for="radlle" class='radio rd'>
+        <input type='radio'  class='radMos radio_input' name='mosRad' id='radlle' onclick='mostrarOrdenes()' value="2">
+        <div class='radio_radio'></div>
+        <p>Llevar</p></label>
+
+
+        <label for="raddom" class='radio'>
+            <input type='radio'  class='radMos radio_input' name='mosRad' id='raddom' value="3" onclick='mostrarOrdenes()'>
+            <div class='radio_radio'></div>
+            <p>Domicilio</p></label>
+        
+  </div> 
+  
+  </section>
+  <!-- FORMULARIO AGREGAR -->
+  <div id='agregar_producto'>
+    
+      <form id='form'>
+        <table>
+            <tr>
+                <th id='title_categoria' colspan="2"></th>
+            </tr>
+            <tr>
+                <td colspan="2"><select name="" id="productos" onchange='detallesProducto()'>
+                    
+                </select></td>
+            </tr>
+            <tr>
+                <td>Cantidad</td><td><input type="number" id='cantidad' onchange='totall()'></td>
+            </tr>
+            <tr>
+                <td>Costo</td><td><input type="number" id='costo' onchange='totall()'></td>
+            </tr>
+            <tr>
+                <td>Total</td><td><input type="number" id='total'></td>
+            </tr>
+            <tr>
+                <td>Observaciones</td>
+                <td>
+                
+                <label for="obsserSi" class='radio dvObs'>
+                    <input type="radio" name="ob" id='obsserSi' class='radio_input obs' value='si'>
+                    <div class='radio_radio '></div>
+                    <p>Si</p>
+                </label>
+                
+                
+                <label for="obsserNo" class='radio dvObs'>
+                    <input type="radio" name="ob" id='obsserNo'  class='radio_input obs' value='' checked>
+                    <div class='radio_radio'></div>
+                    <p>No</p>
+                </label>
+                
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" id='obser'><input type="text" id='observacion'></td>
+            </tr>
+            <tr>
+                <th colspan="2">
+                <button onclick='cancelar()'>Cancelar</button>
+                <button onclick='ordenarProducto()'>Ordenar</button></th>
+            </tr>
+        </table>
+         </form>
+    </div>
+
+  
+  <!-- VENTANAS MODALES DE CONFIRMACIÓN -->
+            <!-- PRODUCTO AGREGADO A ORDEN -->
+            <div class="modal_confirmado" id='agregado'>
+                <p class='modal_text'>¡Producto agregado!</p>
+            </div>
+
+            <!-- PRODUCTO NO AGREGADO A ORDEN -->
+            <div class="modal_confirmado" id='noagregado'>
+                <p class='modal_text'>¡Producto no agregado!</p>
+            </div>
+
+                <!-- PRODUCTO ELIMINADO -->
+            <div class="modal_confirmado" id='eliminado'>
+                <p class='modal_text'>¡Producto eliminado!</p>
+            </div>
+
+            <!-- CLIENTE ELIMINADO -->
+            <div class="modal_confirmado" id='eliminadoC'>
+                <p class='modal_text'>¡Cliente eliminado!</p>
+            </div>
+
+             <!-- STATUS DE ORDEN -->
+             <div class="modal_confirmado" id='status'>
+                <p class='modal_text'>¡Orden entregada!</p>
+            </div>
+
+            <!-- CAMPOS OBLIGATORIOS -->
+            <div class="modal_confirmado" id='obligatorio'>
+                <p class='modal_text adv'>¡Campos obligatorios!</p>
+            </div>
+
+            <!-- CLIENTE OBLIGATORIO -->
+            <div class="modal_confirmado" id='clienteObligatorio'>
+                <p class='modal_text adv'>¡Cliente obligatorio!</p>
+            </div>
+
+
+    <!-- INCLUIR JQUERY -->
+    <script src="../jquery/jquery-3.5.1.min.js"></script>
+    <!-- DATOS -->
+    <script src="../jquery/datos.js"></script>
+    <!-- CONSUMO -->
+    <script src="../jquery/consumo.js"></script>
+    <!-- USUARIO -->
+    <script src="../jquery/usuario.js"></script>
+</body>
+</html>
+<script type="text/javascript">
+
+    //EJECUTAR AL CARGAR EL DOCUMENTO
+    $(document).ready(function(){
+        
+
+                ///MOSTRAR ORDENES REALIZADAS
+                focusVentana();
+                mostrarOrdenes();
+
+                 /////FORMULARIO AGREGAR
+                 mostrarCampoObservacion('');
+        
+        
+                /////DATOS.JS
+                //LOCALSTORAGE
+                Productos();
+       
+                /////ARCHIVO CONSUMO.JS
+                //SELECCIONAR RADIO BUTTON POR DEFAULT
+                consumoInicial();
+                //MOSTRAR CAMPOS DE CONSUMO
+                mostrarConsumoPro();
+               
+                ///////ARCHIVO USUARIO.JS
+                //VALIDAR QUE LA SESION DE USUARIO ESTA INICIALIZADA
+                validarUsuario("ord");
+    
+    }); 
+   
+
+    /////////////////////////////////////////////////////////////////////
+    //ACTUALIZAR PAGINA AUTOMATICA CUANDO SE SUSPENDE EL DISPOSITIVO O SE CAMBIA DE PESTAÑA*****************
+    function focusVentana(){
+        $(window).focus(function() {
+                ///MOSTRAR ORDENES REALIZADAS
+                mostrarOrdenes();
+               
+            });
+    }
+
+    let usuario=sessionStorage.getItem("usserO");
+    ////////////////////////////////////////////////////////////////////
+    //MENU 
+    //CATEGORIAS
+    function menu(num){
+        $(".container").hide();
+        $(".categorias").hide();
+        //MOSTRAR FORMULARIO PARA AGREGAR PRODUCTO
+        $("#agregar_producto").show(); 
+        //RESETEAR FORMULARIO
+        document.getElementById("form").reset();
+
+
+        //CAMBIAR FONDO DE CATEGORIA DE MENU SELECCIONADA
+        let a = document.querySelector('#ite ul');
+        for(let i =0; i<a.children.length; i++){
+            if(num==i){
+                a.children[num].style.backgroundColor="#c0431c";
+            }else{
+                //a.children[i].style.backgroundColor="#eb8d36";
+            }
+        }
+
+        //ARREGLO DE CATEGORIAS DEL MENU
+        const categorias = ['Camarones', 'Filetes', 'Esp caliente', 'Fajitas','Cocteles', 'Aguachiles', 'Ceviche', 'Tostadas', 'Tacos', 'Esp fria', 'Mixologia', 'Cortes', 'Postre', 'Bebidas', 'Snacks', 'Infantiles', 'Licores', 'Mariscadas','Extras','Cervezas','Desayunos'];
+        
+        
+        document.querySelector("#title_categoria").innerHTML=categorias[num];
+        mostrarProductos(num);
+        categoriasMenu();
+    }
+    
+     //ICONO DE MENU PARA DISPOSITIVOS MOBILES
+    function buttonMenu(){
+        let  but=document.getElementById("btn-menu");
+        if(but.checked){
+           document.getElementById("ite").style.marginLeft="0%";  
+        }else{
+            document.getElementById("ite").style.marginLeft="-100%"; 
+        }
+    }
+
+    //MOSTRAR CATEGORIAS DEL MENU
+    function categoriasMenu(){
+        
+        if(screen.width <820) {
+            document.getElementById("ite").style.marginLeft="-100%"; 
+            document.getElementById("btn-menu").checked=false;
+        }else{}
+    }
+   
+    //CAMBIAR COLOR MENU
+    function cambiarColorMenu(){
+        //CAMBIAR FONDO DE CATEGORIA DE MENU SELECCIONADA A COLOR NORMAL
+        let a = document.querySelector('#ite ul');
+        for(let i =0; i<a.children.length; i++){
+                //a.children[i].style.backgroundColor="#eb8d36";
+        }
+    }
+    
+    
+    
+    ///////////////////////////////////////////////////////////////////////
+    //FORMULARIO AGREGAR PRODUCTO
+    function mostrarProductos(n){
+        //MOSTRAR PRODUCTOS GUARDADOS DESDE LOCALSTORAGE
+        var pro=document.getElementById("productos");//OBTENER CONTENEDOR SELECT
+        var proloc=localStorage.getItem("productosVara");//OBTENER PRODUCTOS DEL LOCALSTORAGE
+          var productosLocal=JSON.parse(proloc);//CONVERTIRLO A ARREGLO
+         //ELIMINAR OPCIONES
+              var length = pro.options.length;//CANTIDAD DE OPCIONES
+              for (i = length-1; i >= 0; i--) {//RECORRER LAS OPCIONES
+                        pro.options[i] = null;//ELIMINAR CADA OPCION
+                    }//CERRAR FOR //RECORRER LAS OPCIONES              
+              //CREAR OPCION POR DEFAULT
+              var optde=document.createElement('option');//CREAR OPCION
+                  optde.disable=true;//SELECCIONADO POR DEFAULT
+                   optde.value='0';//VALOR = 0
+                  optde.text="Elige un producto";//TEXTO
+                  pro.appendChild(optde);//AGREGARLO AL PADRE (SELECT PRODUCTOS)    
+              //CREAR OPCIONES
+            for(p=0; p<productosLocal[n].length; p++){//RECORRER ARREGLO DE SNACK
+              var opt=document.createElement('option');//CREAR OPCION 
+              var coma = productosLocal[n][p].indexOf('-');
+              opt.text=productosLocal[n][p].substr(0,coma);
+              opt.value=productosLocal[n][p];
+              pro.appendChild(opt);    
+            }//CERRAR FOR //RECORRER ARREGLO DE SNACK
+    }
+
+    //MOSTRAR DETALLES DEL PRODUCTO SELECCIONADO
+    function detallesProducto(){
+
+        let tit=document.getElementById("title_categoria").innerHTML;
+        
+        let pro=document.getElementById("productos").value;
+        let guion=pro.indexOf('-');
+        let protext=pro.substr(0,guion);
+        
+        let cost=pro.substr(guion+1);
+        
+        
+        document.getElementById("cantidad").value=1;
+        document.getElementById("costo").value=cost;
+        totall();
+    }
+    //MOSTRAR TOTAL DEL PRODUCTO
+    function totall(){
+        let cant=document.getElementById("cantidad").value;
+        let cost=document.getElementById("costo").value;
+        let mul;
+        if(cant!="" && cost!=""){
+            mul=parseInt(cant)*parseInt(cost); 
+        }else{
+            
+            mul=0;
+        }
+        document.getElementById("total").value=mul; 
+    }
+  
+    //OCULTAR FORMULARIO DE AGREGAR PRODUCTO
+    function cancelar(){
+        $(".container").show();
+        $("#agregar_producto").hide();
+        //TAMAÑO EN DISPOSITIVOS MOVILES
+        if(screen.width > 820) {
+            document.getElementById("ite").style.marginLeft="0%"; 
+        }else{
+          
+        }
+
+        $(".categorias").show();
+
+        //CAMBIAR COLOR MENU
+        //cambiarColorMenu();
+        $("#obser").hide();//OCULTAR CAMPO DE OBSERVACIONES
+    }
+    
+    
+     //OCULTAR CAMPO DE OBSERVACIONES EN FORMULARIO
+   //MOSTRAR CAMPO DE OBSERVACIONES
+   const obs=  document.querySelectorAll('.obs');
+      
+      obs.forEach(ob=>ob.addEventListener('click',()=>{
+            mostrarCampoObservacion(ob.value);
+            
+      }));
+      function mostrarCampoObservacion(val){
+          
+          if(val){
+              $("#obser").show();
+          }else{
+            $("#obser").hide();
+          }
+      }
+    
+    
+    
+     //////////////////////////////////////////////////////////////////////
+    //MOSTRAR ORDENES
+    function mostrarOrdenes(){
+        
+        let num=document.querySelector("input[name=mosRad]:checked").value;
+        $.ajax({
+				type:'POST',
+				url:'mostrar_ordenes.php',
+				data:{num},
+				success:function(respro){
+                    $(".historial_ordenes").html(respro);
+                },
+        });
+    }
+
+
+    //ELIMINAR ORDEN
+    function eliminarOrden(id){
+        $.ajax({
+				type:'POST',
+				url:'eliminar_orden.php',
+				data:{id:id},
+				success:function(respro){
+                   let res=eval(respro);
+
+                    if(res==0){
+                        //ORDEN ELIMINADA
+                        $("#eliminado").slideToggle('fast');
+                                        setTimeout(function (){
+                                            $("#eliminado").slideToggle('fast');
+                                    },2000
+                                    );
+                        
+                        mostrarOrdenes();
+                    }else{
+                        //ORDEN NO ELIMINADA
+                        
+                    }
+                },
+        });
+        
+    }
+
+     //ELIMINAR ORDEN
+     function eliminarCliente(id){
+        $.ajax({
+				type:'POST',
+				url:'eliminar_cliente.php',
+				data:{id:id},
+				success:function(respro){
+                   let res=eval(respro);
+                  console.log(res);
+                    if(res==0){
+                        //ORDEN ELIMINADA
+                        $("#eliminadoC").slideToggle('fast');
+                                        setTimeout(function (){
+                                            $("#eliminadoC").slideToggle('fast');
+                                    },2000
+                                    );
+                        
+                        mostrarOrdenes();
+                    }else{
+                        //ORDEN NO ELIMINADA
+                        
+                    }
+                },
+        });
+        
+    }
+    //STATUS ENTREGADO
+    function statusEntregado(id){    
+        $.ajax({
+				type:'POST',
+				url:'status_orden.php',
+				data:{id:id},
+				success:function(respro){
+                   let res=eval(respro);
+                    if(res==2){
+                        //ORDEN ACTUALIZADA
+                      
+                        $("#status").slideToggle('fast');
+                                        setTimeout(function (){
+                                            $("#status").slideToggle('fast');
+                                    },2000
+                                    );
+                        mostrarOrdenes();
+                    }else{
+                        //ORDEN NO ACTUALIZADA
+                        
+                    }
+                },
+        });
+    }
+   
+   
+   
+    //AGREGAR ORDEN
+    function ordenarProducto(){
+        //EVITAR ENVIAR FORMULARIO
+        $("#form").on('submit', function(evt){
+            evt.preventDefault();  
+        });
+
+        //OBTENER INFORMACIÓN DE CONSUMO
+        let lugar=JSON.parse(localStorage.getItem("lugarVaradero")) || ['','',''];
+        let con=localStorage.getItem("consumoVara");
+       
+        //OBTENER INFORMACION DE OBSERVACIONES DEL CLIENTE
+        let obserCelular=JSON.parse(localStorage.getItem("obserCelularVaradero")) || "";
+       
+        console.log(obserCelular);
+
+        if(con==2){
+            // obserCelular = obserCelular.length > 0 ? obserCelular[0] : "vacio";
+            if(obserCelular[0]!=''){
+                obserCelular=obserCelular[0];
+            }else{
+                obserCelular="vacio";
+            }
+            
+        }else if(con==3){
+            if(obserCelular[1]!=''){
+                obserCelular=obserCelular[1];
+            }else{
+                obserCelular="vacio";
+            }
+        }else{
+            obserCelular="vacio";
+        }
+
+        if(obserCelular===" " || obserCelular ==="  "){
+            obserCelular="vacio";
+        }
+    
+        //FORMULARIO PRODUCTO
+        let cat=document.querySelector("#title_categoria").innerHTML;
+        let proo= document.querySelector("#productos").value;
+        let guion = proo.indexOf('-');
+        let pro=proo.substr(0,guion);
+        let can= document.querySelector("#cantidad").value;
+        let cos=document.querySelector("#costo").value;
+        //OBSERVACIONES
+        let obs=(document.querySelector("#observacion").value).normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        
+        
+
+        //VALIDAR INFORMACIÓN DE CLIENTE
+        if(lugar[con-1]!==""){
+            //SI HAY INFORMACIÓN DE CLIENTE
+           
+            //VALIDAR FORMULARIO DE PRODUCTO CON TEXTO
+        if(pro!="" && can!="" && cos!=""){
+            //FORMULARIO CON TEXTO
+        
+            //AGREGAR ORDEN
+            $.ajax({
+                    type:'POST',
+                    url:'agregar_orden.php',
+                    data:{cat:cat, con:con, lugg:lugar[con-1], pro:pro, can:can, cos:cos, obs:obs, obserCelular,usuario
+                    },
+                    success:function(respro){
+                        var orde = eval(respro);
+                    
+
+                        if(orde[0]>0){
+                            //ORDEN REGISTRADA    
+
+                           
+                            
+                            //MOSTRAR VENTANA REGISTRADO
+                            $("#agregado").slideToggle('fast');
+                            setTimeout(function (){
+                                    $("#agregado").slideToggle('fast');
+                                    },2000
+                                );
+                            
+                        }else{
+                            //ORDEN NO REGISTRADA
+                                //MOSTRAR VENTANA NO REGISTRADA
+                            $("#noagregado").slideToggle('fast');
+                            setTimeout(function (){
+                                    $("#noagregado").slideToggle('fast');
+                                    },2000
+                                );
+                        }
+
+                        //MOSTRAR ORDENES
+                        $(".categorias").show();
+                            mostrarOrdenes();
+                    }
+                });
+                
+                    //OCULTAR FORM Y MOSTRAR ORDENES
+                    $(".container").show();
+                    $("#agregar_producto").hide();
+                    //OCULTAR COMPOR DE OBSERVACIONES    
+                    mostrarCampoObservacion('');
+                    //CAMBIAR COLOR MENU
+                    //cambiarColorMenu();
+
+                    }else{
+                        //FORMULARIO VACIO
+                        $("#obligatorio").slideToggle('fast');
+                                    setTimeout(function (){
+                                            $("#obligatorio").slideToggle('fast');
+                                            },2000
+                                        );
+                        }
+        }else{
+            //NO HAY INFORMACIÓN DE CLIENTE
+            $("#clienteObligatorio").slideToggle('fast');
+                    setTimeout(function (){
+                        $("#clienteObligatorio").slideToggle('fast');
+                    },2000
+                 );
+
+        }
+    }
+        
+
+
+
+    
+    
+    
+
+
+    
+    
+</script>

@@ -1,0 +1,284 @@
+@font-face{
+    font-family: 'Poppins', sans-serif;
+      src: url("../fonts/Poppins-ExtraLight.ttf");
+    src: url("../fonts/Poppins-Light.ttf");
+    src: url("../fonts/Poppins-SemiBold.ttf");
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Poppins', sans-serif;
+}
+/*****************************************************/
+/*DINERO EN CAJA*/
+.divFondo{
+    width: 100%;
+    height: 100%;
+    /*max-height: 1500px;*/
+    background: rgba(0,0,0,0.8);
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    display: none;
+    z-index: 9;
+}
+
+.divContenedor{
+  
+    margin: auto;
+    background: #fff;
+    width: 100%;
+    max-width: 450px;
+    min-height: 250px;
+    box-shadow: 0 0 32px -16px rgba(0,0,0,0.5);
+    border-radius: 8px;
+}
+.divContenedor table{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+.divContenedor table th{
+    padding: 30px 0px;
+    border-bottom: 3px solid rgba(0,0,0,0.8);
+}
+.divContenedor table td{
+    padding: 10px 0px;
+}
+.divContenedor table td input{
+    font-size: 19px;  
+    border: 2px solid #000;
+    border-radius: 10px;
+    padding: 4px 1px;
+    text-align: center;
+        outline: 0;
+        width: 150px;
+        font-family: inherit;
+}
+.divContenedor table td .cta{
+    border-radius: 10px;
+    width: 100px;
+    background: #eb8d36;
+    border:0px;
+    color:#fff;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-weight: 600;
+    font-family: inherit;
+}
+.divContenedor .divError{
+    color: crimson;
+    display: none;
+    padding: 1px 0;
+}
+/****************************************************/
+#versionSistema{
+    text-align: center;
+    width: 100%;
+}
+#versionSistema p{
+    color: gray;
+}
+/******************************************************************/
+/*CONTAR CLIENTES*/
+.contar_clientes{
+    width: 90%;
+    height:100%;
+    margin: 10px auto;
+    text-align: center;
+}
+.contar_clientes h1{
+    font-size: 1.9em;
+}
+
+.contar_clientes h1 spam{
+    font-weight: 400;
+}
+.contar_clientes #total{
+    font-size: 2em;
+    color:#c0431c;
+}
+/*********************************************************/
+/*CONTENIDO BUSCAR*/
+.contenido_buscar{
+    margin-bottom: 80px;
+}
+/*FORM DE BUSCAR*/
+.form_buscar{
+    width: 70%;
+    height: 100%;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.form_buscar input{
+    display: block;
+    margin: 10px auto;
+    font-size: 0.9em;
+    padding: 5px 10px;
+    outline: none;
+    border: 1px solid #000;
+    border-radius: 10px;
+    font-family: inherit;
+    width: 250px;
+    display: inline-block;
+}
+
+.form_buscar .form_cta{
+    font-size: 0.9em;
+    border-radius: 10px;
+    padding: 5px 10px;
+    width: 100px;
+    margin-top: 20px;
+    background: #eb8d36;
+    border:0px;
+    color:#fff;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-weight: 700;
+    font-family: inherit;
+}
+/***************************************************/
+/*HISTORIAL ORDENES*/
+/*ENCABEZADO*/
+.mostrar_historial{
+    width: 70%;
+    margin: 40px auto;
+    /* outline: 1px solid #000; */
+    text-align: center;
+    
+}
+.mostrar_historial th{
+    /* outline: 1px solid #000; */
+}
+.mostrar_historial .mesas{
+    box-shadow: 0 0 32px -16px rgba(0,0,0,0.5);
+    height: 100%;
+    width: 100%;
+    margin: auto;
+    padding-bottom: 20px;
+    border-radius: 20px;
+    position: relative;
+}
+.mostrar_historial .mesas .iconCliente{
+    width: 200px;
+}
+.mostrar_historial .mesas .iconImprimir a{
+    text-decoration: none;
+    color:#eb8d36;
+    font-size: 0.9em;
+}
+.mostrar_historial .linkTicket:before{
+    content: url('../../img/imprimir.png');
+    position: relative;
+    top:3px;
+    right: 2px;
+}
+
+.mostrar_historial .mesas .eliminarCliente{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+.mostrar_historial .mesas .eliminarCliente:before{
+    content: url('../../img/borrar.png');
+}
+
+.mostrar_historial nav table{
+    width: 100%;
+    border-bottom: 2px solid #000;
+}
+.mostrar_historial nav table th{
+    font-size: 20px;
+}
+.mostrar_historial nav table th .mesa:before{
+    content: url('../../img/orden.png');
+    position: relative;
+    top:3px;
+    right: 3px;
+}
+.mostrar_historial nav table .total{
+    font-weight: 600;
+    width: 30%;
+}
+.mostrar_historial nav table .total span{
+    font-weight: 400;
+}
+
+/*ORDENES*/
+.mostrar_historial .ordenes table{
+    width: 90%;
+    margin: 10px auto;
+}
+
+/* MOSTRAR COSTO DE ENVIO */
+.mostEnv{
+    text-align: right;
+    margin-right: 60px;
+    font-weight: 600;
+}
+.mostEnv span{
+    font-weight: 400;
+}
+/*MOSTRAR HORA DE VENTA*/
+.horaVenta{
+    width: 100%;
+    margin: 5px auto;
+    margin-bottom: 50px;
+    
+}
+.horaVenta p{
+    text-align: right;
+    color: darkgrey;
+    margin-right: 20px;
+}
+
+.mostrar_historial .nohay{
+    color:crimson;
+    margin: 70px 0;
+}
+
+
+
+/**********************************************/
+/*PIE DE PAGINA*/
+footer{
+    width: 100%;
+    bottom: 0;
+    position: fixed;
+}
+footer p{
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+footer p a{
+    text-decoration: none;
+    color: #eb8d36;
+    font-weight: 600;
+}
+footer p a:before{
+    content: url('../../img/regresar.png');
+    position: relative;
+    top:3px;
+    right: 2px;
+}
+
+footer h5{
+    font-size: 18px;
+    font-weight: 600;
+   position: absolute;
+   bottom: 10px;
+   right: 20px;
+}
+
+footer h5 a{
+    font-weight: 500;
+    text-decoration: none;
+    color:#eb8d36;
+}
+

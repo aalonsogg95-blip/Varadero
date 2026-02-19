@@ -1,0 +1,153 @@
+
+@font-face{
+    font-family: 'Poppins', sans-serif;
+    src: url("../fonts/Poppins-ExtraLight.ttf");
+    src: url("../fonts/Poppins-Light.ttf");
+    src: url("../fonts/Poppins-SemiBold.ttf");
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+a:hover{
+    text-decoration: none;
+    color:#b8292f;
+}
+.btn:hover{
+    color: white !important;
+}
+
+body{
+    /* background-image: linear-gradient(to right top, #051937, #0a2041, #10284c, #152f57, #1b3762); */
+    font-family: 'Poppins', sans-serif !important;
+    background-image: url("../img/fondo4.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+   display: flex;
+   flex-direction: column;
+   height:100vh;
+   margin: 0;
+     justify-content: center;
+     align-items: center;
+    
+}
+
+.contenedor_card{
+    position: fixed;
+        top:0;
+        left: 20;
+        right:0;
+        bottom:0;
+     display: flex;
+}
+
+/* FORMULARIO */
+.cuadro{
+    background: white;
+    /* background-color: rgb(245, 240, 240); */
+    text-align: center;
+    margin: auto;
+    right: 50%;
+    width: 85%;
+    max-width: 370px;
+    min-height: 450px;
+   box-shadow: 0 0 32px -16px rgba(0,0,0,0.3);
+    border-radius: 8px;
+    padding: 10px 0;
+    /* outline: 1px solid #000; */
+}
+
+.cuadro .cuadro_img{
+    width: 50%;
+    display: block;
+    margin: 10px auto;
+}
+
+.cuadro .cuadro_title{
+    margin-bottom: 0px;
+    font-weight: 700;
+    font-size: 1.4em;
+    color: #202020;
+}
+.cuadro .cuadro_subtitle{
+    color:#202020; 
+    font-weight: 400;
+    font-size: 1.1em;
+}
+.cuadro .formulario label {
+    font-weight: 600;
+}
+.cuadro .formulario label i{
+    position: relative;
+    top:2px;
+    color:#202020;
+    font-size: 1.4em;
+}
+.cuadro .formulario{
+    width: 60%;
+    /* outline: 1px solid #000; */
+}
+.cuadro .formulario input{
+    border: 1px solid rgb(71, 71, 71);
+    text-align: center;
+}
+
+.cuadro .btn{
+    background-color: #eb8d36;
+    padding: 5px 25px;
+    border: none;
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-top: 10px;
+    color: white;
+}
+
+/******************************************/
+/*FOOTER*/
+footer{
+    /* outline: 1px solid #000; */
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+}
+footer a{
+   color: #b8292f;
+   padding-left: 30px;
+   font-weight: 600;
+   /* padding-bottom: 20px; */
+}
+footer a i{
+    position: relative;
+    top: 2px;
+ }
+
+
+@media screen and (max-width:768px){
+   
+    body{
+        background: white;
+    }
+    .cuadro{
+        box-shadow: none;
+
+    }
+
+    .cuadro .cuadro_img{
+        width: 70%;
+        
+    }
+    
+
+    .cuadro .formulario{
+        width: 80%;
+        
+    }
+    .contenedor_card{
+            left: 0;
+            
+    }
+}
+ 

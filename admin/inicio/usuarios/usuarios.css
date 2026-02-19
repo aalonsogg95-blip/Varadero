@@ -1,0 +1,28 @@
+
+
+.usuarioNuevo{
+    border: 1px solid var(--color1);
+    padding: 4px 7px;
+    border-radius: 5px;
+    color: var(--color1);
+}
+
+.divContrasena{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap:10px;
+}
+.spanPassword{
+    color: #ccc;
+    font-size: 0.9em;
+}
+
+.btnTogglePassword{
+    color: var(--color3);
+    font-size: 0.9em;
+}
+
+.btnTogglePassword:hover{
+    color: var(--color3);
+}

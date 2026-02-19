@@ -1,0 +1,644 @@
+@font-face{
+    font-family: 'Poppins', sans-serif;
+      src: url("../fonts/Poppins-ExtraLight.ttf");
+    src: url("../fonts/Poppins-Light.ttf");
+    src: url("../fonts/Poppins-SemiBold.ttf");
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Poppins', sans-serif;
+}
+/**************************************************/
+/*CATEGORIAS*/
+.categorias{
+ 
+}
+#imgList, #btn-menu{
+    display: none;
+}
+.categorias .items{
+    width: 100%;
+text-align: center;
+position: absolute;
+    /* position: absolute;
+    left: 0;
+    height: 50%;
+    width: 190px;
+    top: 15%;
+    bottom: 10%;
+    z-index: 99999;
+     */
+}
+.categorias ul li{
+    display: inline-block;
+    background: #eb8d36;
+    border-bottom: 1px solid #fff;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin: 7px 5px;
+    /* outline: 2px solid red; */
+}
+
+.categorias ul li a{
+    text-decoration: none;
+    color:white;
+    
+}
+
+
+.categorias ul li:hover{
+    background: #c0431c;
+}
+
+/*ICONOS*/
+.icon:before{
+    position: relative;
+    top:3px;
+    right: 2px;
+}
+.cam:before{
+    content: url("img/camarones.png");
+}
+.categorias ul .butCa{
+    background: orange;
+}
+.fil:before{
+    content: url("img/filete.png");
+}
+.categorias ul .butFil{
+    background: red;
+}
+.esp:before{
+    content: url("img/especial.png");
+}
+.categorias ul .butEspC{
+    background:  #ffda33 ;
+}
+.faj:before{
+    content: url("img/fajita.png");
+}
+.categorias ul .butFaj{
+    background:   #07817b;
+}
+.coc:before{
+    content: url("img/coctel.png");
+}
+.categorias ul .butCoc{
+    background:  #f954d4;
+}
+.agu:before{
+    content: url("img/aguachile.png");
+}
+.categorias ul .butAgu{
+   background: #636364;
+}
+.ent:before{
+    content: url("img/entrada.png");
+}
+.categorias ul .butEnt{
+    background:  #0606f3;
+ }
+.tos:before{
+    content: url("img/tortillas.png");
+}
+.categorias ul .butTos{
+    background:   #9cf4fa ;
+ }
+.tac:before{
+    content: url("img/taco.png");
+}
+.categorias ul .butTac{
+    background:    #fad59c;
+ }
+.espf:before{
+    content: url("img/especialidad_fria.png");
+}
+.categorias ul .butEspF{
+    background:     #f43952;
+ }
+.ens:before{
+    content: url("img/ensalada.png");
+}
+.categorias ul .butEns{
+    background:      #396bf4;
+ }
+.cor:before{
+    content: url("img/corte.png");
+}
+.categorias ul .butCor{
+    background:       #a7f439;
+ }
+.pos:before{
+    content: url("img/postre.png");
+}
+.categorias ul .butPos{
+    background: #9cb4f6;
+}
+.beb:before{
+    content: url("img/bebida.png");
+}
+.categorias ul .butBeb{
+    background: #0e121b ;
+}
+.sna:before{
+    content: url("img/snack.png");
+}
+.categorias ul .butSna{
+    background:  #6e8b20;
+}
+.inf:before{
+    content: url("img/infantil.png");
+}
+.categorias ul .butInf{
+    background:   #8b4720;
+}
+.lic:before{
+    content: url("img/licores.png");
+}
+.categorias ul .butLic{
+    background:    #52208b ;
+}
+.man:before{
+    content: url("img/mariscada.png");
+}
+.categorias ul .butMan{
+    background:     #8b2024;
+}
+.ext:before{
+    content: url("img/extras.png");
+}
+.categorias ul .butExt{
+    background:     #000;
+}
+/**********************************************************/
+/*CONTENEDOR CONSUMO*/
+.consu{
+    background: WHITE;
+    width: 60%;
+    height: 100%;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    margin: 20px auto;
+    border-radius: 10px;
+    padding: 10px 0;
+    margin-top: 100px;
+}
+.consu table{
+    width: 100%;
+    text-align: center;
+}
+.consu table th{
+    font-size: 20px;
+}
+.consu table td{
+    font-size: 19px;
+
+}
+.consu table td p{
+    display: inline-block;       
+}
+.consu table td select{
+    font-size: 19px;  
+    padding: 3px 3px;
+   border: 1px solid #000;
+    border-radius: 10px;
+    outline: 0;
+    box-shadow: none;
+   background: #fff;
+    width: 80px;
+    font-family: inherit;
+}
+.consu table td input[type='text'], .consu table td input[type="number"]{
+    font-size: 19px;  
+border: 1px solid #000;
+border-radius: 10px;
+padding: 3px 3px;
+text-align: center;
+    outline: 0;
+    width: 300px;
+    font-family: inherit;
+}
+.consu table td input[type='number']{
+    width: 130px;
+    
+}
+.consu table td #llevObs{
+    width: 120px;
+}
+.consu table td, .consu table th{
+    padding: 4px 0;
+}
+.consu table #direccion, #nombre, #mesa{
+    display: none;
+}
+/*Inputs radio*/
+
+.radio{
+    font-size: 18px;
+position: relative;
+vertical-align: middle;
+display: inline-block;
+padding-right: 30px;
+font-size: 18px;
+padding-left: 20px;
+
+
+}
+ .radio input[type="radio"]{
+display: none;
+  }
+   .radio span{
+height: 22px;
+width: 22px;
+border-radius: 50%;
+border: 2px solid #1c1c1c;
+display: block;
+position: absolute;
+right: 0;
+top: 3px;
+}
+ .radio span:after{
+content: " ";
+height: 20px;
+width: 20px;
+background-color: #eb8d36;
+display: block;
+position: absolute;
+left: 50%;
+top: 50%;
+transform: translate(-50%, -50%) scale(0);
+border-radius: 50%;
+transition: 300ms ease-in-out 0s;
+}
+
+ .radio input[type="radio"]:checked ~ span:after{
+    transform: translate(-50%, -50%) scale(1);
+}
+ 
+.elimCliente:before{
+    content: url("img/borrar.png");
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+/*********************************************************/
+/*HISTORIAL DE ORDENES EN COCINA*/
+.historial_ordenes{
+    width: 80%;
+    height: 100%;
+    margin: 20px auto;
+    border-radius: 20px;
+    position: relative;
+    padding-bottom: 40px;
+    
+}
+.historial_ordenes nav{
+    height: 40px;
+    text-align: center;
+    width: 100%;
+}
+.historial_ordenes nav h1{
+    line-height: 40px;
+}
+
+.historial_ordenes .encabezado{
+       width: 70%;
+    height: 100%;
+    margin:10px auto;
+    border-radius: 20px;
+    box-shadow: 0 0 32px -16px rgba(0,0,0,0.5);
+    text-align: center;
+    padding: 5px 0;
+    position: relative;
+}
+.historial_ordenes .detalles{
+    width: 70%;
+    height: 100%;
+    margin: 0px auto;
+    border-radius: 20px;
+    box-shadow: 0 0 32px -16px rgba(0,0,0,0.5);
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    margin-bottom: 50px;
+}
+.historial_ordenes .encabezado spam{
+    font-weight: 400;
+}
+.historial_ordenes .encabezado .ord:before{
+    content: url(img/orden.png);
+    position: relative;
+    top:3px;
+    right: 2px;
+}
+
+.historial_ordenes .encabezado h3,
+.historial_ordenes .encabezado h4{
+    margin: 20px 20px;
+    display: inline-block;
+}
+
+.historial_ordenes table{
+    width: 95%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    text-align: center;
+    
+}
+.historial_ordenes table .sangr{
+    width: 30px;
+}
+.historial_ordenes table .pendiente{
+    /*border: 1px solid #000;*/
+    color:gray;
+}
+.historial_ordenes table .bebColor{
+    color: green;
+}
+.historial_ordenes table .separador{
+        border-bottom: 1px solid gray;
+}
+.historial_ordenes table .butElim, 
+.historial_ordenes table .cant{
+    width: 40px;
+}
+.historial_ordenes table td .elim{
+    width: 17px;
+    height: 20px;
+    position: relative;
+    top:5px;   
+}
+
+.historial_ordenes table td .check{
+    width: 25px;
+    height: 25px;
+    position: relative;
+    top:3px;
+}
+.historial_ordenes .nohay{
+    text-align: center;
+    margin: 50px 0;
+    color:crimson;
+    padding: 0 20px;
+}
+.historial_ordenes table .tdprodu{
+    border-bottom: 1px solid gray;
+}
+.historial_ordenes table .trHora{
+    visibility: hidden;
+}
+.historial_ordenes table .tdHora{
+    display: block;
+}
+
+
+/***************************************************/
+/*PIE DE PAGINA*/
+ .footer{
+    width: 100%;
+    height: 40px;
+    position: fixed;
+     background: white;
+    bottom: 0;
+     text-align: center;
+         
+}
+
+.footer .radio, #agregar_producto .radio{
+    line-height: 40px;
+    width: 150px;
+} 
+
+.footer .rd{
+    width: 120px;
+}
+
+.radio_radio{
+    
+    height: 22px;
+    width: 22px;
+    border-radius: 50%;
+    border: 2px solid gray;
+    display: block;
+    position: absolute;
+    left: 0px;
+    top: 10px;
+}
+
+.radio .radio_radio:after{
+    content: " ";
+    height: 16px;
+    width: 16px;
+    background-color: #eb8d36;
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    border-radius: 50%;
+    transition: 300ms ease-in-out 0s;
+    }
+
+    .radio input[type="radio"]:checked ~ .radio_radio:after{
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+
+    /*RADIO BUTTON FORMULARIO AGREGAR PRODUCTO*/
+    #agregar_producto .radio{
+        width: 80px;
+    }
+
+/********************************************************/
+/*FORMULARIO AGREGAR*/
+#agregar_producto{
+    display: none;
+    width: 60%;
+    margin: 20px auto;
+    text-align: center; 
+    position: relative;
+}
+
+#agregar_producto table{
+    width: 70%;
+    margin: 0 auto;
+}
+#agregar_producto table td, #agregar_producto table th{
+    padding: 15px 0;
+}
+#agregar_producto #title_categoria{
+    font-size: 1.5em;
+}
+#agregar_producto table td input[type='number'],
+#agregar_producto table td input[type='text'], 
+#agregar_producto table td  select{
+    font-size: 1em;
+    padding: 5px 10px;
+    outline: none;
+    border: 1px solid #000;
+    border-radius: 10px;
+    font-family: inherit;
+    width: 120px;
+}
+#agregar_producto table td input[type='text'], 
+#agregar_producto table td select{
+    width: 300px;
+}
+
+#agregar_producto table th button{
+    width: 100px;
+    margin-top: 20px;
+    background: #eb8d36;
+    border:0px;
+    color:#fff;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 10px;
+    font-size: 1em;
+}
+
+/*********************************************************/
+@media screen and (max-width:810px){
+    
+    /*CONTENEDOR CONSUMO*/
+    .consu{
+        width: 80%;
+       margin-top: 60px;
+
+    }
+   
+    /*CATEGORIAS*/
+    .categorias{
+        text-align: center;
+        width: 100%;
+        position: static;
+    }
+    #imgList{
+        display: block;
+            font-size: 1.3em;
+        font-weight: 700;
+    }
+    #imgList:before{
+        content: url(img/list.png);
+        position: relative;
+        top:4px;
+        right: 2px;
+    }
+    
+    #btn-menu{
+        display: none;
+        }
+    
+    .categorias .items{
+        width: 100%;
+        text-align: center;
+        top:110px;
+        bottom: 0px;
+        margin-left: -100%;
+        z-index: 9999;
+        transition:all 0.2s;
+    }
+    
+    .categorias ul{
+        flex-direction:column;
+    }
+    .categorias ul li{
+        display: block;  
+        padding: 5px 0;
+        padding: 2px 10px;
+        border-radius: 0px;
+        margin: 0px 0px;
+    }
+    .categorias ul li a{
+         color:white;
+    }
+    
+    .categorias #btn-menu:checked ~  .items{
+	    margin-left:0;
+    }
+    #agregar_producto{
+        width: 90%;
+    }
+
+    /*HISTORIAL ORDENES*/
+    .historial_ordenes{
+    width: 100%;
+    }
+    
+    .historial_ordenes .encabezado{
+        width: 90%;
+        box-shadow: 0 0 0;
+        padding: 0px;
+        border-top: 2px solid gray;
+        border-radius: 0;
+       
+    }
+    .historial_ordenes .detalles{
+        width: 100%;
+        box-shadow: 0 0 0;
+        margin: 0px auto;
+       padding: 0px;
+    }
+
+    
+}
+
+    
+    
+@media screen and (max-width:450px){
+    
+    /*CONTENEDOR CONSUMO*/
+    .consu{
+        width: 90%;
+       margin-top: 60px;
+    }
+    
+    /*CATEGORIAS*/
+    .categorias ul li{
+        padding: 7px 10px;
+    }
+    /*HISTORIAL ORDENS*/
+    .historial_ordenes table .tdprodu{
+        width: 50%;
+        border-bottom: 1px solid gray;
+    }
+    .historial_ordenes table th span{
+        font-weight: 400;
+    }
+    .historial_ordenes table .trHora{
+        visibility: visible;
+    }
+    .historial_ordenes table .tdHora{
+        display: none;
+    }
+
+    /*PIE DE PAGINA*/
+    .footer{
+        border-top: 1px solid gray;
+    }
+    .footer .radio, #agregar_producto .radio{
+        width: 120px;
+    }
+    .footer .rd{
+        width: 100px;
+    }
+    .footer p, #agregar_producto .radio p{
+        margin-left: 5px;
+    }
+   
+    /*AGREGAR FORM*/
+    #agregar_producto .dvObs{
+        width: 70px;
+    }
+
+    /*CONSUMO*/
+    .consu table td p{
+        display: block;
+    }
+
+}

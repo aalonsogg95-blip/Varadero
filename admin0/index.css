@@ -1,0 +1,121 @@
+
+@font-face{
+    font-family: 'Poppins', sans-serif;
+    src: url("fonts/Poppins-ExtraLight.ttf");
+    src: url("fonts/Poppins-Light.ttf");
+    src: url("fonts/Poppins-SemiBold.ttf");
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+    background-image: url(../img/fondo2.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #669999;
+ 
+
+}
+
+.container_card{
+    position: fixed;
+        top:0;
+        left: 0;
+        right: 0;
+        bottom:0;
+     display: flex;
+}
+/* FORMULARIO */
+.card{
+    margin: auto;
+    margin-right: 20px;
+    background: #fff;
+    width: 100%;
+    max-width: 300px;
+    min-height: 440px;
+    box-shadow: 0 0 32px -16px rgba(0,0,0,0.5);
+    border-radius: 8px;
+    padding-bottom: 10px;
+}
+.card .card_img{
+    width: 70%;
+    height: 550%;
+    display: block;
+    margin: 10px auto;
+}
+
+.card .card_title{
+    text-align: center;
+    margin-bottom: 0px;
+    color: #1f1410;
+}
+.card h4{
+    text-align: center;
+    color:#c0431c;
+    font-weight: 400;
+    margin-bottom: 5px;
+}
+
+.card .card_formulario{
+    width: 90%;
+    margin: auto;
+    text-align: center;
+}
+.card .card_formulario label{
+    font-size: 1.1em;
+}
+.card .card_formulario input{
+    display: block;
+    margin: 10px auto;
+    font-size: 1em;
+    padding: 5px 10px;
+    outline: none;
+    border: 1px solid #000;
+    border-radius: 10px;
+    font-family: inherit;
+    width: 200px;
+    justify-content: center;
+    
+}
+.card .card_error{
+    color:crimson;
+    display: none;
+}
+
+.card .card_formulario .card_cta{
+    width: 100px;
+    margin-top: 0px;
+    background: #eb8d36;
+    border:0px;
+    color:#fff;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-weight: 700;
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-size: 1em;
+    font-family: inherit;
+}
+
+@media screen and (max-width:768px){
+    .card{
+       margin: auto;
+    }
+}
+
+@media screen and (max-width:400px){
+    body{
+        background: white;
+    }
+    .card{
+        box-shadow: none;
+    }
+    
+}

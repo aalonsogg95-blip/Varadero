@@ -1,0 +1,149 @@
+/*
+    HOJA DE ESTILOS GENERALES
+    
+*/
+
+@font-face{
+    font-family: 'Poppins', sans-serif;
+    src: url("fonts/Poppins-ExtraLight.ttf");
+    src: url("fonts/Poppins-Light.ttf");
+    src: url("fonts/Poppins-SemiBold.ttf");
+}
+
+
+:root{
+   
+    --color1:#003366;
+    --color2:#D35400;
+    --color3:#FF6347; 
+}
+
+*{
+    margin: 0 ;
+    padding: 0 ;
+    outline: 0;
+    appearance: 0;
+    border: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+a:hover{
+    text-decoration: none;
+}
+
+.bd{
+    /* outline: 1px solid red; */
+}
+
+body{
+    background-color: #00336619;
+    font-family: "Poppins", sans-serif;
+}
+
+/* p, span, h1,  h3, h4, h6{
+    margin: 0px !important;
+} */
+
+
+/*BOTON*/
+.btn{
+    background-color: var(--color1);
+    font-weight: 600;
+    font-family: inherit;
+}
+
+.btns{
+    display: flex;
+    gap:20px;
+}
+
+
+
+/*CENTRAR CON FLEX*/
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+/* ==========================
+SCROLL UP 
+=============================*/
+#scroll-up{
+    text-decoration: none;
+  }
+  .scrollup{
+    position: fixed;
+    right: 1rem;
+    bottom: -50%;
+    background-color: var(--color1);
+    box-shadow: 0 4px 12px shla(19, 24%, .1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    /* padding: .10rem .35rem; */
+    border-radius:50%;
+    font-size: 1.1rem;
+    color:white;
+    z-index: 999;
+    transition: bottom .3s, transform .3s, background .4s;
+    
+  }
+  
+  .scrollup:hover{
+    transform: translateY(-.25rem);
+    color: white;
+  }
+  
+  
+  .show-scroll{
+    bottom: 4rem;
+  }
+  
+
+
+
+
+
+/* ============================
+MENSAJE DE DISPOSITIVOS MOVILES, 
+VERSION NO DISPONIBLE PARA DISPOSITIVOS MOVILES
+================================ */
+.mensajeDispositivos{
+    display: none;
+    top:0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: white;
+    z-index: 99999;
+}
+
+.mensajeDispositivos img{
+    width: 300px;
+}
+.mensajeDispositivos p{
+    color: gray;
+}
+.mensajeDispositivos p i{
+    position: relative;
+    top:1px;
+}
+
+
+  /* FOR MEDIUM DEVICES */
+  @media screen and (max-width: 700px){
+
+    .mensajeDispositivos{
+        display: flex;
+    }
+    
+  }

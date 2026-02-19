@@ -1,0 +1,649 @@
+@font-face{
+    font-family: 'Poppins', sans-serif;
+      src: url("../fonts/Poppins-ExtraLight.ttf");
+    src: url("../fonts/Poppins-Light.ttf");
+    src: url("../fonts/Poppins-SemiBold.ttf");
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    --colorLink:#eb8d36;
+}
+body{
+    font-family: 'Poppins', sans-serif;
+}
+
+/*****************************************************/
+/*DINERO EN CAJA*/
+.divFondo{
+    width: 100%;
+    height: 100%;
+    /*max-height: 1500px;*/
+    background: rgba(0,0,0,0.8);
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    display: none;
+    z-index: 9;
+}
+
+.divContenedor{
+  
+    margin: auto;
+    background: #fff;
+    width: 100%;
+    max-width: 450px;
+    min-height: 250px;
+    box-shadow: 0 0 32px -16px rgba(0,0,0,0.5);
+    border-radius: 8px;
+}
+.divContenedor table{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+.divContenedor table th{
+    padding: 30px 0px;
+    border-bottom: 3px solid rgba(0,0,0,0.8);
+}
+.divContenedor table td{
+    padding: 10px 0px;
+}
+.divContenedor table td input{
+    font-size: 19px;  
+    border: 2px solid #000;
+    border-radius: 10px;
+    padding: 4px 1px;
+    text-align: center;
+        outline: 0;
+        width: 150px;
+        font-family: inherit;
+}
+.divContenedor table td .cta{
+    border-radius: 10px;
+    width: 100px;
+    background: #eb8d36;
+    border:0px;
+    color:#fff;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-weight: 600;
+    font-family: inherit;
+}
+.divContenedor .divError{
+    color: crimson;
+    display: none;
+    padding: 1px 0;
+}
+/***************************************************/
+/*FECHA Y HORA*/
+#datosFecha{
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    border-bottom: 2px solid #c0431c;
+}
+#datosFecha p{
+    display: inline-block;
+    line-height: 40px;
+    margin: 0 40px;
+    color:#c0431c;
+    font-size: 1.2em;
+}
+#datosFecha #fecha:before{
+    content: url("../img/calendar1.png");
+}
+#datosFecha #hora:before{
+    content: url("../img/clock1.png");
+}
+
+#datosFecha .dfec:before{
+    position: relative;
+    top:3px;
+    right: 2px;
+}
+
+/****************************************************/
+#versionSistema{
+    text-align: center;
+    width: 100%;
+}
+#versionSistema p{
+    color: gray;
+}
+/****************************************************/
+/*CONTAR ORDENES*/
+.contar_ordenes{
+    width: 90%;
+    height:100%;
+    margin: 10px auto;
+    text-align: center;
+}
+.contar_ordenes h1{
+    font-size: 1.9em;
+}
+
+.contar_ordenes h1 spam{
+    font-weight: 400;
+}
+
+/*****************************************************/
+/*BUSCAR CUENTAS*/
+.form_buscar{
+    /* outline: 1px solid #000; */
+    width: 70%;
+    margin: 20px auto;
+    text-align: center;
+}
+.form_buscar input{
+    display: block;
+    margin: 10px auto;
+    font-size: 0.9em;
+    padding: 8px 10px;
+    outline: none;
+    border: 1px solid #000;
+    border-radius: 10px;
+    font-family: inherit;
+    text-align: center;
+    width: 200px;
+    display: inline-block;
+}
+
+.form_buscar button{
+    font-size: 0.9em;
+    border-radius: 10px;
+    padding: 5px 10px;
+    width: 100px;
+    margin-top: 20px;
+    background: #eb8d36;
+    border:0px;
+    color:#fff;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-weight: 700;
+    font-family: inherit;
+}
+/***************************************************/
+/*MOSTRAR ORDENES*/
+/*ENCABEZADO*/
+.mostrar_ordenes{
+    width: 70%;
+    margin: 10px auto;
+    /* outline: 1px solid #000; */
+    text-align: center;
+    
+}
+.mostrar_ordenes .mesas{
+    box-shadow: 0 0 32px -16px rgba(0,0,0,0.5);
+    height: 100%;
+    width: 100%;
+    margin: 50px auto;
+    padding-bottom: 20px;
+    border-radius: 20px;
+    position: relative;
+}
+
+.mostrar_ordenes .mesas .eliminarCliente{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+.mostrar_ordenes .mesas p{
+    display: inline-block;
+}
+.mostrar_ordenes .mesas .eliminarCliente:before{
+    content: url('../img/borrar.png');
+}
+
+.mostrar_ordenes nav table{
+    width: 100%;
+    border-bottom: 2px solid #000;
+}
+.mostrar_ordenes nav table th{
+    font-size: 20px;
+}
+.mostrar_ordenes nav table th .mesa:before{
+    content: url('../img/orden.png');
+    position: relative;
+    top:3px;
+    right: 3px;
+}
+
+.mostrar_ordenes nav table td{
+    font-weight: 600;
+    width: 30%;
+}
+.mostrar_ordenes nav table th .obser{
+    color:gray;
+    font-weight: 400;
+    font-size: 1em;
+    font-size: 0.9em;
+}
+.mostrar_ordenes nav table td span{
+    font-weight: 500;
+    font-size: 1.2em;
+}
+.mostrar_ordenes nav table td a{
+    text-decoration: none;
+    color: #eb8d36;
+    font-weight: 600;
+}
+
+.mostrar_ordenes nav table td .pagar:before{
+    content: url('../img/dinero.png');
+}
+.mostrar_ordenes nav table td .imprimir:before{
+    content: url('../img/imprimir.png');
+}
+.mostrar_ordenes nav table td a:before{
+    position: relative;
+    top:3px;
+    right: 3px;
+}
+
+.mostrar_ordenes .noOrdenes{
+    color: crimson;
+    margin: 10px 0;
+}
+
+.mostrar_ordenes .noHay{
+    color: crimson;
+    font-size: 1.1em;
+    margin: 50px 0;
+}
+
+/*ORDENES*/
+.mostrar_ordenes .ordenes table{
+    width: 90%;
+    margin: 10px auto;
+}
+.mostrar_ordenes .ordenes table td .eliminarOrden:before{
+    content: url('../img/borrarOrden.png');
+    position: relative;
+    top:3px;
+    right: 3px;
+}
+
+.mostrar_ordenes .ordenes table td input{
+    font-size: 16px;  
+    border: 1px solid #000;
+    border-radius: 10px;
+    padding: 1px 1px;
+    text-align: center;
+        outline: 0;
+        width: 90px;
+        font-family: inherit;
+}
+.mostrar_ordenes .ordenes table .ordenPendiente{
+    color:gray;
+    font-weight: 600;
+}
+.mostrar_ordenes .ordenes table td a{
+    color: var(--colorLink);
+
+    font-size: 1em;
+    text-decoration: none;
+}
+.mostrar_ordenes .ordenes table td a:before{
+    content: url("../img/anadir.png");
+    position: relative;
+    top:3px;
+    right: 2px;
+}
+.mostrar_ordenes .ordenes table td .editarOrden:before{
+    content: url("../img/editar.png");
+    position: relative;
+    top:2px;
+    left: 3px;
+ }
+ .mostrar_ordenes .ordenes table td span input[type=number]{
+     font-size: 0.9em;  
+     border: 1px solid #000;
+     border-radius: 10px;
+     padding: 4px 1px;
+     text-align: center;
+     outline: 0;
+     width: 100px;
+     font-family: inherit;
+  }
+  .mostrar_ordenes .ordenes table td .guardarOrden{
+     display: none;
+ }
+ .mostrar_ordenes .ordenes table td .guardarOrden:before{
+     content: url("../img/guardar.png");
+     position: relative;
+     top:2px;
+     left: 3px;
+  }
+/*ESTABLECER COSTO A DOMICILIO*/
+
+.envio{
+    text-align: right;
+    margin-right: 100px;
+    font-weight: bold;
+}
+.envio input{
+    font-size: 1em;
+    padding: 3px 5px;
+    outline: none;
+    border: 1px solid #000;
+    border-radius: 10px;
+    font-family: inherit;
+    width: 80px;
+}
+
+    /***********************************************/
+    /*AGREGAR PRODUCTO*/
+
+    /*FORMULARIO*/
+    .divFondoAgregarProducto{
+        width: 100%;
+        height: 100%;
+        /*max-height: 1500px;*/
+        background: rgba(0,0,0,0.8);
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        display: none;
+        z-index: 9;
+    }
+    .divFondoAgregarProducto .divContenedorProducto{
+        align-items: center;
+        margin: auto;
+        background: #fff;
+        width: 100%;
+        max-width: 550px;
+        min-height: 250px;
+        box-shadow: 0 0 32px -16px rgba(0,0,0,0.5);
+        border-radius: 8px;
+        position: relative;
+    }
+    .divFondoAgregarProducto .divContenedorProducto a{
+        position: absolute;
+        background-color: crimson;
+        color:white;
+        font-weight: bold;
+        font-size: 1.1em;
+        top:-10px;
+        right: -10px;
+        text-decoration: none;
+        padding: 1% 2%;
+        border-radius: 50%;
+    }
+    .divFondoAgregarProducto .divContenedorProducto table{
+        text-align: center;
+        width: 80%;
+        margin: 10px auto;
+    }
+    .divFondoAgregarProducto .divContenedorProducto nav{
+        box-shadow: 0 0 32px -16px rgba(0,0,0,0.9);
+        height: 50px;
+        width: 100%;
+        text-align: center;
+        
+    }
+    .divFondoAgregarProducto .divContenedorProducto nav h1{
+        font-size: 1.4em;
+        line-height: 50px;
+    }
+
+    .divFondoAgregarProducto .divContenedorProducto table td{
+        padding: 5px 0;
+        text-align: left;
+        padding-left: 40px;
+    }
+    .divFondoAgregarProducto .divContenedorProducto table th{
+
+        text-align:center;
+    }
+    .divFondoAgregarProducto .divContenedorProducto table label{
+        font-size: 1.2em;
+        font-weight: 600;
+    }
+
+    .divFondoAgregarProducto .divContenedorProducto table input[type='text']{
+        font-size: 1em;
+        padding: 5px 10px;
+        outline: none;
+        border: 1px solid #000;
+        border-radius: 10px;
+        font-family: inherit;
+        width: 250px;
+        background-color: white;
+    }
+    .divFondoAgregarProducto .divContenedorProducto table input{
+        font-size: 1em;
+        padding: 5px 10px;
+        outline: none;
+        border: 1px solid #000;
+        border-radius: 10px;
+        font-family: inherit;
+        width: 100px;
+     
+    }
+
+    .divFondoAgregarProducto .divContenedorProducto table button{
+        width: 100px;
+        margin-top: 20px;
+        background: var(--colorLink);
+        border:0px;
+        font-family: inherit;
+        color:#fff;
+        padding: 5px 8px;
+        cursor: pointer;
+        font-weight: 600;
+        border-radius: 10px;
+        font-size: 1em;
+    }
+
+    .divFondoAgregarProducto .divContenedorProducto table tr .nohay{
+        padding: 10px 0px;
+        text-align: center;
+        color:crimson;
+    }
+
+    /*****************************************************/
+    /*VENTANA DE CONFIRMACIÓN AL ELIMINAR CLIENTE O MESA*/
+    .divFondoEliminar{
+        width: 100%;
+        height: 100%;
+        /*max-height: 1500px;*/
+        background: rgba(0,0,0,0.8);
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        display: none;
+        z-index: 9;
+    }
+    .divFondoEliminar .divContenedorEliminar{
+        align-items: center;
+        margin: auto;
+        background: #fff;
+        width: 100%;
+        max-width: 550px;
+        min-height: 200px;
+        box-shadow: 0 0 32px -16px rgba(0,0,0,0.5);
+        border-radius: 8px;
+        position: relative;
+    }
+    .divFondoEliminar .divContenedorEliminar nav{
+        box-shadow: 0 0 32px -16px rgba(0,0,0,0.9);
+        height: 50px;
+        width: 100%;
+        text-align: center;
+        
+    }
+    .divFondoEliminar .divContenedorEliminar nav h1{
+        font-size: 1.4em;
+        line-height: 50px;
+        
+    }
+    .divFondoEliminar .divContenedorEliminar table{
+        text-align: center;
+        width: 70%;
+        margin: 30px auto;
+        font-size: 1.1em;
+    }
+    .divFondoEliminar .divContenedorEliminar table th{
+        /* outline: 1px solid #000; */
+    }
+    .divFondoEliminar .divContenedorEliminar table tr th span{
+       font-weight: 400;
+       font-size: 1.2em;
+    }
+
+    .divFondoEliminar .divContenedorEliminar table button{
+        width: 100px;
+        margin-top: 20px;
+        background: var(--colorLink);
+        border:0px;
+        font-family: inherit;
+        color:#fff;
+        padding: 5px 8px;
+        cursor: pointer;
+        font-weight: 600;
+        border-radius: 10px;
+        font-size: 1em;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .divFondoEliminar .divContenedorEliminar table .btnNo{
+        background-color: crimson;
+    }
+    
+    /**************************************************/
+    /*CAMBIO SUGERIDO*/
+    .divFondoCambioSugerido{
+        width: 100%;
+        height: 100%;
+        /*max-height: 1500px;*/
+        background: rgba(0,0,0,0.8);
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        display:none;
+        z-index: 9;
+    }
+    .divFondoCambioSugerido .divContenedorCambio{
+        align-items: center;
+        margin: auto;
+        background: #fff;
+        width: 100%;
+        max-width: 550px;
+        min-height: 200px;
+        box-shadow: 0 0 32px -16px rgba(0,0,0,0.5);
+        border-radius: 8px;
+        position: relative;
+    }
+    .divFondoCambioSugerido .divContenedorCambio nav{
+        box-shadow: 0 0 32px -16px rgba(0,0,0,0.9);
+        height: 50px;
+        width: 100%;
+        text-align: center;
+        
+    }
+    .divFondoCambioSugerido .divContenedorCambio nav h1{
+        font-size: 1.4em;
+        line-height: 50px;
+    }
+    .divFondoCambioSugerido .divContenedorCambio h3{
+        text-align: center;
+        font-size: 1.4em;
+        margin-top: 20px;
+    }
+    .divFondoCambioSugerido .divContenedorCambio h3 span{
+        font-weight: 500;
+    }
+    .divFondoCambioSugerido .divContenedorCambio  table{
+        text-align: center;
+        width: 70%;
+        margin: 10px auto;
+        font-size: 1.1em;
+    }
+    .divFondoCambioSugerido .divContenedorCambio table td{
+       padding: 5px 0;
+    }
+    .divFondoCambioSugerido .divContenedorCambio table #tdTotal{
+        font-size: 1.6em;
+        color:#1c2324;
+     }
+    .divFondoCambioSugerido .divContenedorCambio table label{
+        font-size: 1.3em;
+        font-weight: 600;
+    }
+
+    .divFondoCambioSugerido .divContenedorCambio table label span{
+        font-weight: 400;
+    }
+    .divFondoCambioSugerido .divContenedorCambio table input[type='number']{
+        font-size: 1.2em;
+        padding: 5px 10px;
+        outline: none;
+        border: 1px solid #000;
+        border-radius: 10px;
+        font-family: inherit;
+        width: 150px;
+        background-color: white;
+        text-align: center;
+    }
+    
+
+    .divFondoCambioSugerido .divContenedorCambio table button{
+        width: 100px;
+        margin-top: 20px;
+        background: var(--colorLink);
+        border:0px;
+        font-family: inherit;
+        color:#fff;
+        padding: 5px 8px;
+        cursor: pointer;
+        font-weight: 600;
+        border-radius: 10px;
+        font-size: 1em;
+        margin: 0 10px;
+    }
+    .divFondoCambioSugerido .divContenedorCambio table .btnCancelar{
+        background: crimson;
+        
+    }
+/**********************************************/
+/*PIE DE PAGINA*/
+footer{
+    width: 100%;
+    bottom: 0;
+    position: fixed;
+}
+footer p{
+    margin-left: 20px;
+    margin-bottom: 10px;
+    position: relative;
+}
+footer p a{
+    text-decoration: none;
+    color: #eb8d36;
+    font-weight: 600;
+}
+footer p #historial:before{
+    content: url('../img/history.png');
+    position: relative;
+    top:3px;
+    right: 2px;
+}
+footer p #eliminados{
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    display: none;
+}
+footer p #eliminados:before{
+    content: url('../img/eliminados.png');
+    position: relative;
+    top:3px;
+    right: 2px;
+}

@@ -1,0 +1,323 @@
+
+/****************************************************/
+
+.menu_opciones{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:20px;
+    margin-right: 20px;
+}
+.menu_opciones i{
+    font-size: 1.4em;
+    color: #ccc;
+}
+.menu_opciones .activesol i{
+    color: #FFD700;
+}
+.menu_opciones .activeluna i{
+    color: #000;
+}
+
+
+#estadisticas_buscar{
+    width: 80%;
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:10px;
+    flex-direction: column;
+}
+
+#estadisticas_buscar .estadisticas_anual{
+    display: none;
+}
+
+
+#estadisticas_buscar select{
+    height: 40px;
+    width:200px;
+    font-size: 16px;
+    padding: 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    font-family: inherit;
+}
+#estadisticas_buscar select{
+    width: 140px;
+}
+#estadisticas_buscar button{
+    height: 38px;
+    background-color: var(--principal);
+    color: white;
+    font-weight: 500;
+    width: 100px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    font-family: inherit;
+    margin-left: 5px;;
+}
+#estadisticas_buscar h2{
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+/*RADIO INPUTS*/
+#estadisticas_buscar .radio{
+    font-size: 18px;
+position: relative;
+vertical-align: middle;
+display: inline-block;
+padding-right: 20px;
+font-size: 18px;
+padding-left: 25px;
+/* outline: 1px solid #000; */
+
+
+}
+#estadisticas_buscar .radio input[type="radio"]{
+display: none;
+  }
+#estadisticas_buscar .radio span{
+    height: 22px;
+    width: 22px;
+    border-radius: 50%;
+    border: 2px solid var(--principal);
+    display: block;
+    position: absolute;
+    top: 2px;
+    left: 0px;
+}
+
+#estadisticas_buscar .radio span:after{
+    content: " ";
+    height: 16px;
+    width: 16px;
+    background-color: var(--principal);
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    border-radius: 50%;
+    transition: 300ms ease-in-out 0s;
+    }
+
+#estadisticas_buscar   .radio input[type="radio"]:checked ~ span:after{
+    transform: translate(-50%, -50%) scale(1);
+}
+
+
+/***************************************************************/
+/*CONTENEDOR ESTADISTICAS*/
+.estadisticas_contenido, .estadisticas_contenido_anual{
+    display: none;
+}
+
+/*INDICADORES*/
+.estadisticas_contenido .contenedor_indicadores{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.estadisticas_contenido .indicadores .indicadores_items{
+    width: 180px;
+    height: 150px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    background-color: white;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.estadisticas_contenido .indicadores .indicadores_items h2{
+    font-weight: 600;
+    font-size: 2.5em;
+}
+
+.estadisticas_contenido h3, .estadisticas_contenido_anual h3{
+    font-size: 1.1em;
+    font-weight: 700;
+    text-align: center;
+    padding: 10px 0;
+}
+
+/*DATOS*/
+.estadisticas_contenido .datos{
+    width: 90%;
+    margin: 40px auto;
+    display: flex;
+    justify-content: center;
+    gap:30px
+}
+.estadisticas_contenido .datos .datos_relevantes, .estadisticas_contenido .datos .datos_ventas, .estadisticas_contenido .productos_vendidos{
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    background-color: white;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    
+}
+
+.estadisticas_contenido .datos .datos_relevantes{
+    width: 30%;
+    height: 380px;
+}
+.estadisticas_contenido .datos .datos_relevantes table th{
+    font-weight: 600;
+}
+.estadisticas_contenido .datos .datos_ventas{
+    width: 70%;
+}
+
+/*PRODUCTOS ESPECIFICOS*/
+.productos_fecha_especifica{
+    width: 90%;
+    margin: 20px auto;
+    background-color: white;
+    padding: 20px 0;
+}
+.productos_especificos_formulario{
+    text-align: center;
+}
+.productos_especificos_formulario form .name-details{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:5px;
+}
+
+
+.productos_especificos_formulario form .field{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+.productos_especificos_formulario form .field label{
+    margin-bottom: 2px;
+    font-weight: 700;
+    text-align: left;
+    margin-left: 20px;
+}
+.productos_especificos_formulario form .name-details{
+    display: flex;
+}
+.productos_especificos_formulario form .field input{
+    outline: none;
+}
+.productos_especificos_formulario form .input input, .modal form .input select{
+    height: 40px;
+    width:100%;
+    font-size: 16px;
+    padding: 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    font-family: inherit;
+}
+.productos_especificos_formulario form .button input{
+    background-color: var(--links);
+    color: white;
+    font-weight: 500;
+    width: 100px;
+}
+
+/*PRODUCTOS MAS VENDIDOS*/
+.estadisticas_contenido .productos_vendidos{
+    width: 90%;
+    margin: 0 auto;
+}
+.estadisticas_contenido .productos_vendidos .productos_vendidos_mostrar,
+.productos_fecha_especifica .productos_especificos_mostrar, .productos_especificos_mostrar_cero{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    margin: 10px auto;
+    padding-bottom: 20px;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.estadisticas_contenido .productos_vendidos li, 
+.estadisticas_contenido .productos_fecha_especifica li, .productos_especificos_mostrar_cero li{
+    padding: 6px 12px;
+    border-radius: 10px;
+    border: 1px solid #505050;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    width: auto;
+    font-size: 0.9em;
+}
+.estadisticas_contenido .productos_vendidos li span, 
+.estadisticas_contenido .productos_fecha_especifica li span{
+    font-weight: 700;
+}
+.estadisticas_contenido .productos_fecha_especifica .proIngreso{
+    color: orange;
+    font-weight: 500;
+}
+.estadisticas_contenido .productos_fecha_especifica .proCosto{
+    color: gray;
+    font-weight: 500;
+    font-size: 0.9em;
+}
+.estadisticas_contenido .productos_fecha_especifica .proUtilidad{
+    color: green;
+    font-weight: 500;
+}
+.productos_especificos_mostrar_cero .perdida{
+    color: red;
+}
+
+.tdGastos{
+    color: crimson;
+}
+.tdUtilidad{
+    color: green;
+}
+.tdUtilidadRed{
+    color:crimson;
+}
+
+.productos_especificos_mostrar_cero{
+    border-top: 1px solid #ccc;
+    padding-top: 20px;
+}
+
+/*GRAFICAS*/
+.grafica{
+    width: 80%;
+    height: auto;
+    margin: 50px auto;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    background-color: white;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    padding: 20px 20px;
+}

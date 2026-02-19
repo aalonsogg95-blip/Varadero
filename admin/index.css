@@ -1,0 +1,178 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    background-color: #fff5f2;
+}
+
+.login-container {
+    width: 50%;
+    padding: 40px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    margin: auto;
+    max-width: 500px;
+    
+}
+
+
+.login-container .logo img{
+    width: 50%;
+}
+
+
+
+.login-container .titulos{
+ margin-bottom: 30px;
+}
+.login-container .titulos h1 {
+    font-size: 1.6em;
+   
+}
+.login-container .titulos p{
+    color: #aaaaaa;
+    font-size: 0.9em;
+}
+
+.login-container .form-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.login-container label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-size: 0.9em;
+}
+.login-container label i{
+    font-size: 0.9em;
+    position: relative;
+    right: 2px;
+}
+
+.login-container input {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background-color: #00336619;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: inherit;
+}
+
+.login-container .fa-eye{
+    position: absolute;
+    right: 15px;
+    color:#ccc;
+    top:70%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    cursor: pointer;
+}
+.login-container .fa-eye.active::before{
+    color:#333;
+    content: "\f070";
+}
+
+.login-container .password-container {
+    position: relative;
+}
+
+
+.login-container button.btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 45px;
+    max-width: 150px;
+    width: 100%;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    margin: 25px 0;
+    background-color: var(--color1);
+    transition: all 0.3s linear;
+    cursor: pointer;
+}
+.login-container button.btn:hover{
+   background-color: var(--color2);
+}
+
+.login-container button.btn .btn-text{
+    color: white;
+    font-size: 1.1em;
+}
+
+.login-container .mensajeError{
+    display: flex;
+    color: red;
+    justify-content: left;
+    align-items: center;
+    font-size: 0.9em;
+    gap:5px;
+    transition: all 0.3s linear;
+}
+
+.login-container .signup-link {
+    text-align: center;
+    margin-top: 20px;
+    color:black;
+    font-size: 0.9em;
+}
+
+
+
+
+
+/* ======================
+PARTE DERECHA
+Imagen decorativa 
+===========================*/
+.decoration {
+    background-color: white;
+    width: 50%;
+ 
+}
+.decoration img{
+    width: 90%;
+    margin-left: -350px;
+    margin-bottom: -250px;
+}
+
+
+/* ======================
+TEXTO VERSION
+===========================*/
+.text-version{
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}
+.text-version p{
+    font-size: 0.9em;
+    color: gray;
+}
+
+@media (max-width: 768px) {
+    .login-container {
+        width: 90%;
+    }
+    
+    .decoration {
+        display: none;
+    }
+}
+
+
+
+

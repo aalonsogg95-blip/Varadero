@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Productos</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="../../header.css">
+    <link rel="stylesheet" href="../../orden/ventanas.css">
+    <link rel="stylesheet" href="productos.css">
+    
+ 
+    <!-- ICONO -->
+    <link rel="shortcut icon" type='image/x-icon' href='../../img/productos.png'> 
+</head>
+<body>
+   
+   <!-- CABECERA-->
+  <header class='header'>
+    <!-- TITULO -->
+    <div class="header_title">
+        <h1 class='header_tit'>Productos</h1>
+    </div>
+    <!-- BOTON SALIR -->
+    <div class="header_salir">
+        <a href="../estadisticas/sesionJulissa.php" class='header_cta' onclick='cerrarSesion("pro")'></a>
+    </div>
+    
+  </header>
+  
+  
+  <!--FECHA -->
+  
+  <div class="fecha">
+      <h2 id='fecha'></h2>
+  </div>
+  
+   
+   <!-- MENU NAVEGACION -->
+   <nav class="menu">
+       <a href="../inicio.html" class='menu_item menu_item-home'>Inicio</a>
+       <a href="productos.html" class='menu_item'>/Productos</a>
+   </nav>
+   
+   
+   <!-- FORMULARIO BUSCAR -->
+   <div class="form_buscar">
+       <input type="text" class='form_input' id='busc_pro' placeholder="Producto o categoría" onkeyup="buscar()">
+       <button class='form_cta' onclick='buscar()'>Buscar</button>
+   </div>
+   
+    <!-- MENU DE OPCIONES -->
+    <nav class='menu_opciones'>
+        <p class='menu_items' id='clientestotParr'>Productos totales <spam id='productosTotal' class='menu_itemSpan'>0<spam></p>
+        
+        <p class='menu_items'>
+            <a href='#/' onclick='mosenvio()' class='env menu_items-cta'>Envio </a><span id='envi'></span><img src='img/guardar1.png' id='envgua' onclick='guadenv()'></p>
+        
+       
+            <a href='#' class='menu_items menu_items-cta' onclick='agregar()'>Agregar</a>
+
+    </nav>
+   
+   <!-- CONTENIDO -->
+   <section class="container" id='content'>
+       <div class="container_mostrar" id='contMostrar'>
+           
+       </div>
+       <div class="container_agregar" id='contAgregar'>
+           <h1 class='container_title'>Agregar producto</h1>
+           
+           
+           <table class='container_tabla_form'>
+            <form id='form'>
+               <tr>
+                   <td><label>Producto</label></td><td><input type="text" id='producto' class='input_camp'></td>
+               </tr>
+               <tr>
+                   <td><label>Categoría</label></td><td>
+                   <select id="categoria" class='input_camp'>
+                      <option value="" selected>Selecciona...</option>
+                       <option value="camarones">Camarones</option>
+                       <option value="filetes">Filetes</option>
+                       <option value="esp caliente">Esp caliente</option>
+                       <option value="cocteles">Cocteles</option>
+                       <option value="aguachiles">Aguachiles</option>
+                       <option value="ceviche">Ceviche</option>
+                       <option value="tostadas">Tostadas</option>
+                       <option value="tacos">Tacos</option>
+                       <option value="esp fria">Esp fria</option>
+                       <option value="mixologia">Mixología</option>
+                       <option value="cortes">Cortes</option>
+                       <option value="postre">Postre</option>
+                       <option value="bebidas">Bebidas</option>
+                       <option value="cervezas">Cervezas</option>
+                       <option value="snacks">Snacks</option>
+                       <option value="infantiles">Infantiles</option>
+                       <option value="licores">Licores</option>
+                       <option value="mariscadas">Mariscadas</option>
+                       <option value="extras">Extras</option>
+                       <option value="desayunos">Desayunos</option>
+                   </select>    
+               </tr>
+
+               <tr>
+                   <td><label>Costo</label></td><td><input type="number" id='costo' class='input_camp'></td>
+               </tr>
+               <tr>
+                   <td><label>Fecha</label></td><td><input type="date" id='fechacamp'  class='input_camp'></td>
+               </tr>
+               <tr>
+                   <td><label>Status</label></td><td><select id="status" class='input_camp'>
+                       <option value=1>Disponible</option>
+                       <option value=0>Agotado</option>
+                   </select> </td>
+               </tr>
+               <tr>
+                   <td colspan='2' class='tabla_bottones'>
+                   <button class='tabla_cta' onclick='cancelar()'>Cancelar</button>
+                   
+                   <button class='tabla_cta' onclick='guardar()'>Guardar</button></td>
+               </tr>
+              </form>
+           </table>
+             
+           
+       </div>
+   </section>
+    
+    
+    
+    
+    <!-- MODAL DE REGISTRADO -->
+        <div class="modal_confirmado" id='registrado'>
+                <p class='modal_text'>¡Producto registrado!</p>
+        </div>
+    <!-- MODAL CONTESTE TODOS LOS CAMPOS -->
+        <div class="modal_confirmado" id='vacio'>
+                <p class='modal_text adv'>¡Campos vacios!</p>
+        </div>
+    <!-- MODAL NO REGISTRADO -->
+        <div class="modal_confirmado" id='noregistrado'>
+                <p class='modal_text err'>¡Producto no registrado!</p>
+        </div>
+    <!-- MODAL NO GUARDADO -->
+        <div class="modal_confirmado" id='noactualizado'>
+                <p class='modal_text err'>¡Datos no guardados!</p>
+        </div>
+        
+      <!-- MODAL DE ELIMINADO -->
+        <div class="modal_confirmado" id='eliminado'>
+                <p class='modal_text'>¡Producto eliminado!</p>
+        </div>
+     <!-- MODAL DE ACTUALIZADO -->
+        <div class="modal_confirmado" id='actualizado'>
+                <p class='modal_text'>¡Datos guardados!</p>
+        </div>
+        <!-- MODAL NO REGISTRADO -->
+        <div class="modal_confirmado" id='noregistrado'>
+                <p class='modal_text err'>¡Producto no registrado!</p>
+        </div>
+
+        <!-- INCLUIR JQUERY -->
+    <script src="../../jquery/jquery-3.5.1.min.js"></script>
+    <!-- FECHA -->
+    <script src="../fecha.js"></script>
+    <script src="../../jquery/usuario.js"></script>
+</body>
+</html>
+<script type='text/javascript'>
+    //EJECUTAR AL CARGAR EL DOCUMENTO
+    $(document).ready(function(){
+        
+     fecha();//FECHA (FECHA.JS)
+     
+    
+    
+      contador();//CONTAR EL NUMERO DE PRODUCTOS REGISTRADOS
+      buscar();
+        /////ARCHIVO USUARIO.JS
+        validarUsuario("pro");
+    
+    }); 
+    
+    
+   
+    //BUSCAR PRODUCTOS FORMULARIO INPUT
+    function buscar(){
+         let busc_pro=document.getElementById('busc_pro').value;//CAMPO BUSCAR
+          let busc = 'producto='+busc_pro;
+        
+            $.ajax({
+				type:'POST',
+				url:'mostrar_productos.php',
+				data:busc,
+				success:function(respo){
+                  $('#contMostrar').html(respo);//MOSTRAR PRODUCTOS BUSCADOS 
+				}
+			});
+        contador();
+        
+        
+    }
+    
+     
+    
+    //CONTAR EL NUMERO DE PRODUCTOS REGISTRADOS
+    function contador(){
+        let busc_pro=document.getElementById('busc_pro').value;//CAMPO BUSCAR
+          let busc = 'producto='+busc_pro;
+        $.ajax({
+				type:'POST',
+				url:'contador_productos.php',
+				data:busc,
+				success:function(respo){
+                  var res=eval(respo);
+                    
+                   document.getElementById("productosTotal").innerHTML=res[0];
+                    document.getElementById("envi").innerHTML="$"+res[1];
+                    
+				}
+			});
+    }
+    
+
+    
+    function status(id,sta){
+        console.log(sta+"-"+id);
+        $.ajax({
+				type:'POST',
+				url:'cambiar_status.php',
+				data:{id:id, sta:sta},
+				success:function(respo){
+                  buscar();
+ 
+                    
+				}
+			});
+    }
+    
+    //MOSTRAR FORMULARIO AGREGAR
+    function agregar(){
+        $("#contMostrar").hide();
+        $("#contAgregar").show();
+        formatDate();  ////FECHA PARA CAMPO DE FECHA EN FORMULARIO (FECHA.JS)       
+    }
+    //OCULTAR FORMULARIO AGREGAR
+    function cancelar(){
+        $("#contMostrar").show();
+        $("#contAgregar").hide();
+    }
+    
+    
+    $("#form").on('submit', function(evt){
+            evt.preventDefault();  
+    
+        });
+
+    
+    ///////////////////////////////////////////////////////////////
+    //AGREGAR PRODUCTO
+    function guardar(){
+        //DATOS DE FORMULARIO
+        let pro=(document.getElementById("producto").value).normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        let cat=document.getElementById("categoria").value;
+        let cos=document.getElementById("costo").value;
+        let fec=document.getElementById("fechacamp").value;
+        let sta=document.getElementById("status").value;
+        var usu=sessionStorage.getItem("usser");
+        
+        console.log(pro+"-"+cat+"-"+cos+"-"+fec+"-"+sta);
+        if(pro != "" && cat != "" && cos != "" &&  fec != "" & sta!=""){
+            //CAMPOS CON TEXTO
+            
+            $.ajax({
+				type:'POST',
+				url:'agregar_productos.php',
+				data:{
+                    pro:pro,
+                    cat:cat,
+                    cos:cos,
+                    sta:sta,
+                    fec:fec
+                },
+				success:function(respo){
+                    let res=eval(respo);
+                    console.log(res);
+                    
+                    document.getElementById("form").reset();
+                    $("#contAgregar").hide();
+                    //VALIDAR SI SE REGISTRO CLIENTE
+                    if(res>0){
+                        //SI ESTA REGISTRADO
+                       $("#registrado").slideToggle('fast');
+                        setTimeout(function (){
+                                $("#registrado").slideToggle('fast');
+                                },2000
+                            );
+                        
+                       }else{
+                           //NO ESTA REGISTRADO
+                           $("#noregistrado").slideToggle('fast');
+                        setTimeout(function (){
+                                $("#noregistrado").slideToggle('fast');
+                                },2000
+                            );
+                       }
+                    $('#contMostrar').show();
+                    buscar();
+ 
+				}
+			});
+            
+        }else{
+            
+            //CAMPOS VACIOS
+            $("#vacio").slideToggle('slow');
+                        setTimeout(function (){
+                                $("#vacio").slideToggle('slow');
+                                },2000
+                            );
+        }
+    }
+    
+    
+    
+   
+    //EDITAR PRODUCTO
+    function editarPro(id, fecha){
+        $("#Gua"+id).show();
+        $("#Ed"+id).hide();
+        
+         let fila=document.getElementById(id);
+            let col1=fila.getElementsByTagName("td")[0];
+            let col2=fila.getElementsByTagName("td")[1];
+            let col3=fila.getElementsByTagName("td")[2];
+            let col4=fila.getElementsByTagName("td")[3];
+            
+            let col1text=col1.innerHTML;
+            let col2text=col2.innerHTML;
+            let col3text=col3.innerHTML;
+            let sign=col3text.substr(1);
+            let col4text=fecha;
+
+        var categ=['camarones', 'filetes','esp caliente','fajitas','cocteles','aguachile','ceviche','tostadas','tacos','esp fria','ensalada','cortes','postre','bebidas','cervezas','snacks', 'infantiles', 'licores', 'mariscadas','extras'];
+        
+        
+            //CAMPO DE PRODUCTO
+            col1inp=col1.innerHTML=" ";
+            let input1=document.createElement("input");
+            input1.type="text";
+            input1.setAttribute("class", "input_camp input_edit");
+            input1.value=col1text;
+            col1.appendChild(input1);
+        
+            //CAMPO DE CATEGORÍA
+            col2inp=col2.innerHTML=" ";
+            let input2=document.createElement("select");
+            input2.setAttribute("class", "input_camp input_edit cate");
+            var inpu2=input2.value=col2text;
+            col2.appendChild(input2);
+            
+            let option = document.createElement("option");
+                option.text=inpu2;
+                option.value=inpu2;
+            input2.appendChild(option);
+            var num=1;
+            for(var x=0; x<categ.length; x++){
+                    if(categ[x]==col2text){
+                    
+                    }else{
+                        let optionn = document.createElement("option");
+                        optionn.value=categ[x];
+                        optionn.text=categ[x];
+                        input2.appendChild(optionn); 
+                    }
+                
+                }
+        
+            //CAMPO DE COSTO PUNTO
+            col3inp=col3.innerHTML=" ";
+            let input3=document.createElement("input");
+            input3.type="number";
+            input3.setAttribute("class", "input_camp input_edit num");
+            input3.value=sign;
+            col3.appendChild(input3);
+        
+        
+            //CAMPO DE FECHA
+            col4inp=col4.innerHTML=" ";
+            let input4=document.createElement("input");
+            input4.type="date";
+            input4.setAttribute("class", "input_camp input_edit cate");
+            input4.value=col4text;
+            col4.appendChild(input4);
+        
+    }
+    
+    //ACTUALIZAR PRODUCTO
+    function actualizarPro(id){
+       let fila=document.getElementById(id);
+            var coll1=fila.getElementsByTagName("input")[0].value;
+            var col1=coll1.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            var col2=fila.getElementsByTagName("select")[0].value;
+            var col3=fila.getElementsByTagName("input")[1].value;
+            var col4=fila.getElementsByTagName("input")[2].value;
+        
+        if(col1 != "" && col2 != "" && col3 != "" && col4 != ""){
+            //CAMPOS CON TEXTO
+
+        $.ajax({
+                type:'POST',
+                url:'editar_productos.php',
+                data:{col1:col1,
+                      col2:col2,
+                      col3:col3,
+                      col4:col4,
+                      id:id},
+                success:function(respo){
+                    var res=eval(respo);
+               
+                  
+                    if(res>0){
+                        //SI ESTA ACTUALIZADO
+                        $("#actualizado").slideToggle('fast');
+                        setTimeout(function (){
+                                $("#actualizado").slideToggle('fast');
+                                },2000
+                            );
+                        
+                    }else{
+                        //NO ESTA ACTUALIZADO
+                        $("#noactualizado").slideToggle('fast');
+                        setTimeout(function (){
+                                $("#noactualizado").slideToggle('fast');
+                                },2000
+                            );
+                    }
+                   
+                     //ACTUALIZAR
+                    buscar();
+                   
+                
+            }
+        }); 
+       }else{
+           //CAMPOS VACIOS
+           $("#vacio").slideToggle('slow');
+                        setTimeout(function (){
+                                $("#vacio").slideToggle('slow');
+                                },2000
+                            );
+       }
+        
+    }
+    
+    
+    //ELIMINAR PRODUCTO
+    function eliminarPro(id){
+        
+        $.ajax({
+				type:'POST',
+				url:'eliminar_productos.php',
+				data:{id:id},
+				success:function(respo){
+                var res = eval(respo);
+                    //VALIDAR GASTO ELIMINADO
+                    if(res ==0){
+                        //ELIMINADO
+                        $("#eliminado").slideToggle('fast');
+                        setTimeout(function (){
+                                $("#eliminado").slideToggle('fast');
+                                },2000
+                            );
+                        //ACTUALIZAR
+                        buscar();
+                      
+                    }else{
+                        //NO ELIMINADO
+                        $("#noeliminado").slideToggle('fast');
+                        setTimeout(function (){
+                                $("#noeliminado").slideToggle('fast');
+                                },2000
+                            );
+                    }
+				}
+			 }); 
+        
+    }
+    
+ 
+    /////////////////////////////////////////////////////////////////
+    //COSTO DE ENVIO
+    //EDITAR
+    function mosenvio(){
+        let envi=document.getElementById("envi");
+        
+        let textenv=envi.innerHTML;
+        let texts=textenv.substr(1);
+        let en=envi.innerHTML=" ";
+        let inputen=document.createElement("input");
+            inputen.type="number";
+        inputen.setAttribute("class", "input_camp");
+            inputen.value=texts;
+            envi.appendChild(inputen);
+        
+        //MOSTRAR ICONO DE GUARDAR
+        $("#envgua").show();
+    }
+    
+    function guadenv(){
+        $("#envgua").hide();
+        let campenv =document.getElementById("envi");
+         let inp=campenv.getElementsByTagName("input")[0].value;
+        let datos="env="+inp;
+        $.ajax({
+            type:'POST',
+            url:'editar_envio.php',
+            data:datos,
+            success:function(resp){
+                contador();
+              
+            }
+        });
+    }
+    
+
+
+</script>

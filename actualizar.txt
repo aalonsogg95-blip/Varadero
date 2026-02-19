@@ -1,0 +1,46 @@
+
+
+
+
+
+
+
+
+//PENDIENTES
+AGREGAR APARTADO DE CORTESIAS EN ESTADISTICAS
+PRUEBAS CON CANTIDADES Y FUNCIONALIDAD
+DOCUMENTAR CODIGO EN CANVA
+USUARIO NO ACTIVO AL MOMENTO DE INICIAR SESION EN ESTATUS INACTIVO
+Listo ----INICIAR SESION CON LA NUEVA TABLA DE usuarios
+
+
+
+
+Si elimino una cuenta y despues agrego un pedido con el mismo nombre de la cuenta, eliminada, no aparece
+Editar tipo de pago en el historial
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*Actualizar nombre en CORTESIAS
+*Calendario de reservas
+*Cortesias entregadas en ticket
+
+
+
+
+*Actualizar 
+admin/caja imprimir_ticket.php
+admin/historial imprimir_ticket_historial.php

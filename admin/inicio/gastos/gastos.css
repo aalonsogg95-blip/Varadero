@@ -1,0 +1,138 @@
+
+
+
+
+
+/*FILTROS X TIPO*/
+.filtros_tipo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.filtros_tipo ul{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    gap:10px;
+    flex-wrap: wrap;
+}
+.filtros_tipo ul li{
+    /* background-color: red; */
+    border: 1px solid var(--color3);
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px 5px;
+}
+.filtros_tipo ul li h6{
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
+.sumamayor0{
+    color: red ;
+}
+
+.filtros_tipo ul li .radio{
+    font-size: 0.9em;
+    position: relative;
+    vertical-align: middle;
+    display: inline-block;
+    padding-right: 20px;
+    padding-left: 15px;
+    /* color: var(--color1); */
+}
+.filtros_tipo ul li .radio input[type="radio"]{
+    display: none;
+} 
+.filtros_tipo ul li .radio span{
+    height: 16px;          /* Reducido de 20px a 16px */
+    width: 16px;           /* Reducido de 20px a 16px */
+    border-radius: 50%;
+    border: 2px solid var(--color3);
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 2px;
+}
+
+.filtros_tipo ul li .radio span:after{
+    content: " ";
+    height: 10px;          /* Reducido de 14px a 10px */
+    width: 10px;           /* Reducido de 14px a 10px */
+    background-color: var(--color3);
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    border-radius: 50%;
+    transition: 300ms ease-in-out 0s;
+}
+
+.filtros_tipo ul li .radio input[type="radio"]:checked ~ span:after{
+    transform: translate(-50%, -50%) scale(1);
+}
+
+
+/* *****************************
+FILTRO POR TIEMPO
+ ******************************* */
+.filtro_tiempo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.filtro_tiempo .radio{
+    font-size: 0.9em;
+    position: relative;
+    vertical-align: middle;
+    display: inline-block;
+    padding-right: 25px;
+    padding-left: 15px;
+}
+.filtro_tiempo .radio input[type="radio"]{
+    display: none;
+}
+.filtro_tiempo .radio span{
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    border: 2px solid var(--color3);
+    display: block;
+    position: absolute;
+    right: 0;
+    top: -1px;
+}
+
+.filtro_tiempo .radio span:after{
+    content: " ";
+    height: 14px;
+    width: 14px;
+    background-color: var(--color1);
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    border-radius: 50%;
+    transition: 300ms ease-in-out 0s;
+}
+.filtro_tiempo .radio input[type="radio"]:checked ~ span:after{
+    transform: translate(-50%, -50%) scale(1);
+}
+
+
+/* BUSCAR POR MES, BUSCAR POR FECHA */
+.div_buscar_mes, .div_buscar_fecha{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:10px;
+}
+.div_buscar_mes label, .div_buscar_fecha label{
+    margin: 0px !important;
+}
+
+.iconusuariogasto i{
+    font-size: 0.8em !important;
+}

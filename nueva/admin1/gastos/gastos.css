@@ -1,0 +1,138 @@
+
+
+/****************************************************/
+#gastos_buscar{
+    width: 80%;
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:10px;
+    flex-direction: column;
+}
+
+#gastos_buscar .gastos_mes{
+    display: none;
+}
+
+
+#gastos_buscar input[type=date], #gastos_buscar select{
+    height: 40px;
+    width:200px;
+    font-size: 16px;
+    padding: 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    font-family: inherit;
+}
+#gastos_buscar select{
+    width: 140px;
+}
+#gastos_buscar button{
+    height: 38px;
+    background-color: var(--principal);
+    color: white;
+    font-weight: 500;
+    width: 100px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    font-family: inherit;
+    margin-left: 5px;;
+}
+#gastos_buscar h2{
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+/*RADIO INPUTS*/
+#gastos_buscar .radio, #gastos_indicadores p .radio{
+    font-size: 18px;
+position: relative;
+vertical-align: middle;
+display: inline-block;
+padding-right: 20px;
+font-size: 18px;
+padding-left: 25px;
+/* outline: 1px solid #000; */
+
+
+}
+#gastos_buscar .radio input[type="radio"], #gastos_indicadores p .radio input[type="radio"]{
+display: none;
+  }
+#gastos_buscar .radio span, #gastos_indicadores p .radio span{
+    height: 22px;
+    width: 22px;
+    border-radius: 50%;
+    border: 2px solid var(--principal);
+    display: block;
+    position: absolute;
+    top: 2px;
+    left: 0px;
+}
+
+#gastos_buscar .radio span:after, #gastos_indicadores p .radio span:after{
+    content: " ";
+    height: 16px;
+    width: 16px;
+    background-color: var(--principal);
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    border-radius: 50%;
+    transition: 300ms ease-in-out 0s;
+    }
+
+#gastos_buscar   .radio input[type="radio"]:checked ~ span:after, #gastos_indicadores p .radio input[type="radio"]:checked ~ span:after{
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    #gastos_indicadores p .radio span{
+        height: 18px;
+        width: 18px;
+        top:4px;
+    }
+    #gastos_indicadores p .radio{
+        margin-top: 5px;
+        font-weight: 500;
+    }
+
+    #gastos_indicadores p .radio span:after{
+        content: " ";
+        height: 12px;
+        width: 12px;
+        
+        }
+
+/*********************************************************/
+/*GASTOS INDICADORES*/
+#gastos_indicadores{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:20px;
+}
+#gastos_indicadores p{
+    margin: 0;
+    font-weight: 600;
+    font-size: 1.1em;
+}
+#gastos_indicadores p span{
+    font-weight: 400;
+}
+
+
+/*********************************************************/
+/*GASTOS MOSTRAR*/
+#gastos_mostrar{
+    margin-top: 20px;
+}

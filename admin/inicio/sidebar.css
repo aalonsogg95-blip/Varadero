@@ -1,0 +1,59 @@
+
+/* ============================
+*ARCHIVO DE ESTILOS BARRA IZQUIERDA
+* MENU DE ENLACES
+*
+ ================================ */
+
+
+ /* ============================
+BARRA SIDEBAR DE ENLACES
+================================ */
+.sidebar {
+    width: 80px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    height: 100vh;
+    position: fixed;
+    top:0px;
+
+}
+
+.sidebar .logo img{
+        width: 50px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    flex-grow: 1;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.sidebar li {
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+.sidebar li a{
+    color: var(--color1);
+    font-size: 1.2em;
+}
+
+ .sidebar li.active {
+    position: relative;
+    background-color: var(--color1);
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.sidebar li.active a{
+    color: var(--color3);
+}

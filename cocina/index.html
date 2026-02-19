@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Cocina</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="index.css">
+    <!-- INCLUIR JQUERY -->
+    <script src="../jquery/jquery-3.5.1.min.js"></script>
+    <!-- ICONO -->
+    <link rel="shortcut icon" type='image/x-icon' href='img/camarones.png'>
+</head>
+<body>
+   
+    <div class='container_card'>
+         <!-- FORMULARIO -->
+  <section class='card'>
+      <div class="card_imagen">
+          <img src="../img/varadero_logo.png" class="card_img">
+      </div>
+      <h1 class='card_title'>Iniciar sesión</h1>
+      <h4>Cocina</h4>
+      <div class='card_formulario'>
+          <label for="">Usuario</label>
+          <input type="text" id='usuario' style="text-align:center; text-transform: lowercase;">
+          <label for="">Contraseña</label>
+          <input type="password" id='contrasena' style="text-align:center">
+          <p class='card_error' id='error'>¡Datos incorrectos!</p>
+          <input type="button" value='Entrar' class='card_cta' onclick='entrar()'>
+      </div>
+      
+  </section>
+    </div>
+    
+   
+   
+    
+</body>
+</html>
+
+<script src='../jquery/usuario.js'></script>
+<!--CODIGO JS -->
+<script type='text/javascript'>
+    $(document).ready(function(){
+        sesion(2);
+
+    });
+    
+    function entrar(){
+        let usu=document.getElementById("usuario").value;
+        let con=document.getElementById("contrasena").value;
+        
+     
+         $.ajax({
+				type:'POST',
+				url:'sesion.php',
+				data:{usu:usu,con:con},
+				success:function(respo){
+					var res=eval(respo);
+                    
+                    if(res>0){
+                       //SI ESTA REGISTRADO
+                        sessionStorage.setItem("usserCoc",usu.toLowerCase());
+                        window.location.href="cocina.html";
+                    }else{
+                       //NO ESTA REGISTRADO
+                       $("#error").show();
+                       setTimeout(()=>{
+                            $("#error").hide();
+                       },3000);
+                    }
+                    
+				}
+			});
+     
+    }
+    
+</script>

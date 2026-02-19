@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' >
+    <!--<meta name="viewport" content="width=device-width,initial-scale=1.0">
+    -->
+    <title>Cocina</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="cocina.css">
+    <link rel="stylesheet" href="../header.css">
+    <link rel="stylesheet" href="../ventanas.css">
+    
+    <!-- ICONO -->
+    <link rel="shortcut icon" type='image/x-icon' href='img/camarones.png'> 
+</head>
+<body>
+   
+   <!-- CABECERA-->
+  <header class='header'>
+   
+    <!-- TITULO -->
+    <div class="header_title">
+        <h1 class='header_tit'>Cocina</h1>
+    </div>
+    
+    <!-- BOTON SALIR -->
+   
+    <div class="header_salir">
+        <a href="#/" class='header_cta' onclick='cerrarSesion("coc")'></a>
+    </div>
+   
+  </header>
+  
+  <!-- MOSTRAR FECHA Y HORA-->
+  <nav id='datosFecha'>
+      <p id='fecha' class='dfec'></p>
+      <p id='hora' class='dfec'></p>
+  </nav>
+  <!-- CONTAR ORDNES-->
+    <div class='contar_ordenes'>
+        <h1>Ordenes pendientes: <spam id='ordpen'> </spam></h1>
+    </div>
+    
+  <!-- MOSTRAR ORDENES-->
+  <section class='mostrar_ordenes'>
+      
+      
+  </section>
+
+
+  <!-- /////////////////////////// -->
+    <!-- VENTANA MODAL GENERAL -->
+    <div class="modal_confirmado" id='modal'>
+        <p class='modal_text'></p>
+    </div>
+  
+  <!-- INCLUIR JQUERY -->
+  <script src="../jquery/jquery-3.5.1.min.js"></script>
+  <script src='../jquery/usuario.js'></script>
+  <!-- VENTANAS MODALES -->
+  <script src="../jquery/ventanas.js"></script>
+</body>
+</html>
+<script type="text/javascript">
+
+    //EJECUTAR AL CARGAR EL DOCUMENTO
+    $(document).ready(function(){
+     
+        mostrarOrdenes();
+
+        setInterval(function(){
+                contador();
+
+				},2000
+				);
+        
+        setInterval(function(){
+               datFecha();
+				},5000
+				);
+   
+
+
+    //           //  ELIMINAR ORDENES CANCELADAS CADA 2 MINUTOS
+    //    setInterval(function(){
+    //             eliminarCancelado();
+	// 			},7000
+	// 			);
+
+
+            /////ARCHIVO USUARIO.JS
+            validarUsuario("coc");
+
+    }); 
+
+
+    let contenedor=document.querySelector(".mostrar_ordenes");
+    let result=0;
+    //////////////////////////////////////////////////////////////
+    //ORDENES
+    function contador(){
+        $.ajax({
+        type:'POST',
+        url:'contar_ordenes.php',
+        success:function(resp){
+             let resultado=eval(resp);
+             
+             document.getElementById("ordpen").textContent=resultado;
+            let getPen=localStorage.getItem("ContadorPendCoc");
+        
+                    if(getPen== null){
+                       localStorage.setItem("ContadorPendCoc", parseInt(0));//GUARDAR LOCALSTORAGE 
+                    }else{
+                        
+                        if(resultado>getPen){
+                            
+                           var snd = new Audio("notificacion.mp3");
+                            snd.play();
+                            localStorage.setItem("ContadorPendCoc", resultado);//GUARDAR LOCALSTORAGE 
+                              
+                             ordenes();
+                             
+                            
+                        }else if(resultado<getPen){
+                            
+                           localStorage.setItem("ContadorPendCoc", resultado);//GUARDAR LOCALSTORAGE
+                          
+                             ordenes();
+                            
+                           
+                        }else{
+                            
+                        }
+                    }
+                    
+            }
+        });
+     
+    }
+
+
+    ///////////////////////////////////////////////////////////////
+   
+    
+  
+    function ordenes(){
+        $.ajax({
+				type:'POST',
+                complete: function() { mostrarOrdenes()},
+				url:'cargar_ordenes.php',
+				success:function(resp){
+                   let resultado = eval(resp);
+                   localStorage.setItem('mosOrdenes',JSON.stringify(resultado));
+                },
+           });
+
+
+    }
+    
+    function mostrarOrdenes(){
+        limpiarHtml();
+        let getOrdenes=JSON.parse(localStorage.getItem("mosOrdenes")) || null;
+        
+
+        if(getOrdenes!=null){
+
+            if(getOrdenes.length>0){
+
+                let table = document.createElement("table");
+                let tr1=document.createElement("tr");
+                tr1.innerHTML=`
+                            <th>Mesa</th>
+                            <th>Cantidad</th>
+                            <th>Producto</th>
+                            <th>Consumo</th>
+                            <th>Usuario</th>
+                            <th>Hora</th>
+                            <th> </th>`;
+                table.appendChild(tr1);
+                contenedor.appendChild(table);
+                    //MOSTRAR ORDENES
+                    for(o=0; o<getOrdenes.length; o++){
+                        let tr2=document.createElement("tr");
+                        
+
+
+                        //PINTAR DE COLOR LAS ORDENES PARA LLEVAR
+                        if(getOrdenes[o].consumo!="Local"){
+                            tr2.classList.add("llevarMarca");
+                        }
+                        //PINTAR ORDENES LOCALES
+                        if(getOrdenes[o].consumo=="Local"){
+                            tr2.classList.add(getOrdenes[o].lugar);
+                            
+                        }
+                        //PINTAR DE COLOR LAS ORDENES CANCELADAS
+                        if(parseInt(getOrdenes[o].status)==0){
+                            tr2.classList.add("cancelado");
+                        }
+
+                        if(getOrdenes[o].observaciones!=null){
+                            tr2.classList.add("observaciones");
+                        }
+
+                        tr2.innerHTML=`
+                                    <td>${getOrdenes[o].lugar}</td>
+                                    <td><span class='cantPro'>${getOrdenes[o].cantidad}</span></td>
+                                    <td>${getOrdenes[o].categoria} ${getOrdenes[o].producto}</td>
+                                    <td>${getOrdenes[o].consumo}</td>
+                                    <td>${getOrdenes[o].usuario}</td>
+                                    <td>${getOrdenes[o].hora}</td>
+                                    <td><a href='#/' class='linkOrden' onclick='entregarOrden(${getOrdenes[o].idorden})'></a></td>`;
+
+                        table.appendChild(tr2);
+                        if(getOrdenes[o].observaciones!=null){
+                                let tr3=document.createElement("tr");
+                                tr3.classList.add("observacion");
+                                if(parseInt(getOrdenes[o].status)==0){
+                                    tr3.classList.add("cancelado");
+                                }
+                                if(getOrdenes[o].consumo=="Local"){
+                                    tr3.classList.add(getOrdenes[o].lugar);
+                                }
+                                if(getOrdenes[o].consumo!="Local"){
+                                    tr3.classList.add("llevarMarca");
+                                }
+                                tr3.innerHTML=`
+                                            <td colspan='7'>${getOrdenes[o].observaciones}</td>`;
+                                table.appendChild(tr3);
+                        }
+                        contenedor.appendChild(table);
+                    }
+            }else{
+                let p = document.createElement("p");
+                p.classList.add("nohay");
+                p.textContent="No hay ordenes pendientes";
+                contenedor.appendChild(p);
+            }
+          }else{
+
+        }
+
+    }
+
+    function limpiarHtml(){
+            while(contenedor.firstChild){
+                contenedor.removeChild(contenedor.firstChild);
+            }
+        }
+
+    //////////////////////////////////////////////////////////////////////
+    //ENTREGAR ORDENES
+    function entregarOrden(idorden){
+        $.ajax({
+				type:'POST',
+				url:'entregarOrden.php',
+				data:{idorden},
+				success:function(respro){
+                   let res=eval(respro);
+                    if(res==2){
+                        //ORDEN ACTUALIZADA
+                        ventanasModales("bien","Orden entregada");
+                        
+                    }else{
+                        //ORDEN NO ACTUALIZADA
+                        ventanasModales("erro","Orden no entregada");
+                    }
+                },
+        });
+    }    
+
+    //////////////////////////////////////////////////////////////////////  
+  
+    function eliminarCancelado(){
+        $.ajax({
+				type:'POST',
+				url:'eliminar_ordenes.php',
+				success:function(resp){
+                },
+            }); 
+             ordenes();
+    }
+
+
+
+    function datFecha(){
+        
+        ///MOSTRAR FECHA
+        const fecha = new Date();
+        const sem= fecha.getDay();
+        const hoy = fecha.getDate();
+        const mes = fecha.getMonth(); 
+        const ano = fecha.getFullYear();
+        
+        let meses=["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre","Diciembre"];
+        
+        let semana=["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+    
+        let StringFecha=semana[sem]+" "+hoy+" de "+meses[mes]+" del "+ano;
+        document.getElementById("fecha").innerHTML=StringFecha;
+        
+        //MOSTRAR HORA
+        let hora = fecha.getHours();
+        let min=(fecha.getMinutes()<10?'0':'') + fecha.getMinutes()
+        if(hora<12){
+            hora=hora+":"+min+" am";
+        }else{
+            switch(hora){
+            case 12: hora="12:"+min+" pm"; break;
+            case 13: hora="01:"+min+" pm"; break;
+            case 14: hora="02:"+min+" pm"; break;
+            case 15: hora="03:"+min+" pm"; break;
+            case 16: hora="04:"+min+" pm"; break;
+            case 17: hora="05:"+min+" pm"; break;
+            case 18: hora="06:"+min+" pm"; break;
+            case 19: hora="07:"+min+" pm"; break;
+            case 20: hora="08:"+min+" pm"; break;
+            case 21: hora="09:"+min+" pm"; break;
+            case 22: hora="10:"+min+" pm"; break;
+            case 23: hora="11:"+min+" pm"; break;
+            case 24: hora="12:"+min+" am"; break;
+            }
+        }
+        
+        document.getElementById("hora").innerHTML=hora;
+        
+    }
+    
+</script>

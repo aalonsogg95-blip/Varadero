@@ -1,0 +1,175 @@
+@font-face{
+    font-family: 'Poppins', sans-serif;
+      src: url("../fonts/Poppins-ExtraLight.ttf");
+    src: url("../fonts/Poppins-Light.ttf");
+    src: url("../fonts/Poppins-SemiBold.ttf");
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Poppins', sans-serif;
+}
+/***************************************************/
+/*FECHA Y HORA*/
+#datosFecha{
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    border-bottom: 2px solid #c0431c;
+}
+#datosFecha p{
+    display: inline-block;
+    line-height: 40px;
+    margin: 0 40px;
+    color:#c0431c;
+    font-size: 1.2em;
+}
+#datosFecha #fecha:before{
+    content: url(img/calendar1.png);
+}
+#datosFecha #hora:before{
+    content: url(img/clock1.png);
+}
+
+#datosFecha .dfec:before{
+    position: relative;
+    top:3px;
+    right: 2px;
+}
+
+
+/****************************************************/
+/*CONTAR ORDENES*/
+.contar_ordenes{
+    width: 90%;
+    height:100%;
+    margin: 10px auto;
+    text-align: center;
+}
+.contar_ordenes h1{
+    font-size: 1.9em;
+}
+
+.contar_ordenes h1 span{
+    font-weight: 400;
+}
+/***************************************************/
+/*MOSTRAR ORDENES*/
+.mostrar_ordenes{
+    width: 90%;
+    height: 100%;
+    margin: 10px auto;
+    margin-bottom: 100px;
+}
+.mostrar_ordenes table{
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 200;
+    text-align: center;
+    font-size: 23px;
+}
+.mostrar_ordenes table td{
+    border-bottom: 2px solid gray;
+    padding: 2px 0px;
+    
+}
+.mostrar_ordenes table th{
+    border: 2px solid #000;
+}
+.mostrar_ordenes table .obse{
+    border: 1px solid #000;
+}
+.mostrar_ordenes table .separador{
+    border-bottom: 2px solid #000;
+    padding: 0px;
+}
+.llevarMarca{
+    color: #c0431c;
+}
+.cancelado{
+    background-color: rgba(255,0,0,0.5);
+    
+}
+.cantPro{
+    font-weight: bold;
+    font-size: 25px;
+    color:#c0431c;
+}
+.mostrar_ordenes table .observaciones td{
+    border-bottom: 0px;
+    font-weight: 700;
+    padding: 0px 0;
+}
+.mostrar_ordenes table .observacion td{
+    font-weight: 700;
+    padding: 0px 0;
+}
+.mostrar_ordenes table .linkOrden{
+    content: url("../orden/img/checkmark.png");
+    width: 30px;
+}
+
+.mostrar_ordenes .nohay{
+    font-size: 1.3em;
+    color:crimson;
+    margin: 70px auto;
+    text-align: center;
+}
+
+
+/*PINTAR COLOR DE MESAS*/
+.mostrar_ordenes  table .M1{
+    background-color: rgba(175, 237, 175, 0.46);
+}
+.mostrar_ordenes  table .M2{
+    background-color: rgba(123, 220, 225, 0.422);
+}
+.mostrar_ordenes  table .M3{
+    background-color: rgba(203, 225, 123, 0.556);
+}
+.mostrar_ordenes  table .M4{
+    background-color: rgba(169, 187, 212, 0.499);
+}
+.mostrar_ordenes  table .M5{
+    background-color: rgba(238, 162, 246, 0.461);
+}
+.mostrar_ordenes  table .M6{
+    background-color: rgba(160, 246, 114, 0.506);
+}
+.mostrar_ordenes  table .M7{
+    background-color: rgba(160, 160, 160, 0.463);
+}
+.mostrar_ordenes  table .M8{
+    background-color: rgba(254, 97, 97, 0.434);
+}
+.mostrar_ordenes  table .M9{
+    background-color: rgba(188, 180, 107, 0.458);
+}
+.mostrar_ordenes  table .M10{
+    background-color: rgba(254, 97, 141, 0.435);
+}
+.mostrar_ordenes  table .M11{
+    background-color: rgba(109, 246, 203, 0.49);
+}
+.mostrar_ordenes  table .M12{
+    background-color: rgba(80, 88, 194, 0.388);
+}
+.mostrar_ordenes  table .M13{
+    background-color: rgba(61, 137, 145, 0.442);
+}
+.mostrar_ordenes  table .M14{
+    background-color: rgba(205, 195, 212, 0.431);
+}
+.mostrar_ordenes  table .M15{
+    background-color: rgba(157, 57, 134, 0.475);
+}
+.mostrar_ordenes  table .M16{
+    background-color: rgba(242, 255, 100, 0.371);
+}
+.mostrar_ordenes  table .M17{
+    background-color: rgba(103, 90, 89, 0.456);
+}

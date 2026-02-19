@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' >
+    
+    <title>Admin</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="inicio.css">
+    
+    <!-- ICONO -->
+    <link rel="shortcut icon" type='image/x-icon' href='../img/productos.png'> 
+</head>
+<body>
+   
+   <!-- CABECERA-->
+  <header class='header'>
+   <!-- LOGO -->
+    <div class='header_imagen'>
+        <img src="../img/varadero_logo.png" class="header_img">
+    </div>
+    <!-- TITULO -->
+    <div class="header_title">
+        <h1 class='header_tit'>Bienvenid@ <span id='usuario'></span></h1>
+    </div>
+    
+    <!-- BOTON SALIR -->
+   
+    <div class="header_salir">
+        <a href="estadisticas/sesionJulissa.php" class='header_cta' onclick='cerrarSesion("adm")'></a>
+    </div>
+   
+  </header>
+  <!--FECHA -->
+  <div class="fecha">
+      <h2 id='fecha'></h2>
+  </div>
+  
+   
+   <!-- CONTENIDO-->
+    <section class='container'>
+    
+        <div class='container_item' id='productos'>
+            <div class='container_imagen'><a href='productos/productos.html'>
+                <img src="../img/productos.png" class="container_img"></a>
+            </div>
+            <div class="container_subtitle">
+                <a href="productos/productos.html" class='container_cta'>Productos</a>
+            </div>
+        </div>
+
+        <div class='container_item' id='estadisticas'>
+            <div class='container_imagen'><a href='estadisticas/estadisticas.php'>
+                <img src="../img/estadisticas1.png" class="container_img"></a>
+            </div>
+            <div class="container_subtitle">
+                <a href="estadisticas/estadisticas.php" class='container_cta'>Estadisticas</a>
+            </div>
+        </div>
+
+        <div class='container_item' id='gastos'>
+            <div class='container_imagen'><a href='gastos/gastos.html'>
+                <img src="../img/gasto.png" class="container_img"></a>
+            </div>
+            <div class="container_subtitle">
+                <a href="gastos/gastos.html" class='container_cta'>Gastos</a>
+            </div>
+        </div>
+       
+        
+    </section>
+   
+   
+    <!-- INCLUIR JQUERY -->
+    <script src="../jquery/jquery-3.5.1.min.js"></script>
+    <!-- FECHA -->
+    <script src="fecha.js"></script>
+    <script src='../jquery/usuario.js'></script>
+</body>
+</html>
+<script type="text/javascript">
+
+    //EJECUTAR AL CARGAR EL DOCUMENTO
+    $(document).ready(function(){
+        
+    fecha();//FECHA (FECHA.JS)
+    
+        /////ARCHIVO USUARIO.JS
+        validarUsuario("adm");
+
+        //RESTRINGIR ACESO A USUARIOS
+        usuarios();
+
+        //MOSTRAR USUARIO QUE INGRESA AL SISTEMA
+        mostrarUsuario();
+    }); 
+
+    //VALIDAR QUE SOLAMENTE JULISA PUEDA VER LAS ESTADISTICAS
+    function usuarios(){
+        let usua=sessionStorage.getItem('usserA');
+         document.querySelector('#productos').style='display:flex';
+         document.querySelector('#gastos').style='display:flex';
+        if(usua=="admin"){
+            
+        }else{
+            document.querySelector('#estadisticas').style='display:flex';
+        }
+    }
+
+    //MOSTRAR USUARIO QUE INGRESA AL SISTEMA
+    function mostrarUsuario(){
+        
+        let usuario=document.querySelector('#usuario').textContent=sessionStorage.getItem('usserA');
+    }
+    
+</script>

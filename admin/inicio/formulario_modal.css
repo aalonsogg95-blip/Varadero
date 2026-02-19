@@ -1,0 +1,74 @@
+
+.modal .formulario{
+    width: 100%;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+.modal .formulario .container{
+    max-width: 1000px !important;
+    width: 100%;
+    padding: 10px;
+    background-color: #fff;
+    position: relative;
+    margin: 0 auto;
+}
+.modal .formulario .container header{
+    position: relative;
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    text-align: left;
+}
+
+.modal .formulario .container form .title{
+    text-align: left;
+}
+
+.modal .formulario .container form .fields{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    flex-wrap: wrap;
+    gap:10px;
+   
+}
+
+.modal .formulario .container form .fields .input-field{
+    display: flex;
+    width: calc(100% / 2 - 15px);
+    flex-direction: column;
+    margin: 4px 0;
+}
+.modal .formulario .container form .fields  .fieldsabor{
+    width: 100% !important;
+}
+.modal .formulario .container form .fieldsrow .input-field{
+    width: 100%;
+    margin: -1px !important;
+}
+.modal .formulario .container form .fieldsrow .input-field label{
+    text-align: left !important;
+}
+.modal .formulario .container .modal_relacion_productos{
+    position: relative;
+    width: 100%;
+}
+.modal .formulario .container .contentedor_productos .input-field label{
+    text-align: left;
+}
+
+.modal .formulario .container form .shorts{
+    justify-content: center;
+    align-items: center;
+}
+
+.modal .formulario .container form .long .input-field{
+    width: 100%;
+}
+
+.modal .formulario .container form .shorts .input-field{
+    width: 30%;
+}
+
+
+
